@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ideas &amp; Writing — Dr. Mustafa Mutahari</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1c2b3a;--navy2:#263545;--parch:#f8f4ee;--parch2:#f0ead9;
+  --warm:#e8dfc8;--terra:#c85c3a;--gold:#b5883a;--sage:#4a7c59;
+  --slate:#5a6e7f;--mist:#8fa3b1;--ink:#1a1a2e;--border:#ddd5c0;
+  --serif:'Fraunces',Georgia,serif;--sans:'Outfit','Helvetica Neue',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--parch);color:var(--ink);font-family:var(--sans);overflow-x:hidden;line-height:1.65;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--parch);}::-webkit-scrollbar-thumb{background:var(--warm);}
+
+/* NAV */
+.site-nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:.75rem 3.5rem;background:rgba(248,244,238,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;}
+.nav-logo-mark{width:36px;height:36px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nav-logo-mark span{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--parch);font-style:italic;}
+.nav-logo-text{display:flex;flex-direction:column;}
+.nav-logo-name{font-family:var(--serif);font-size:.95rem;color:var(--navy);line-height:1.1;}
+.nav-logo-sub{font-family:var(--mono);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);}
+.nav-menu{display:flex;align-items:center;gap:0;list-style:none;}
+.nav-menu a,.nav-menu button{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);text-decoration:none;padding:.45rem .8rem;display:block;transition:color .18s;background:none;border:none;cursor:pointer;}
+.nav-menu a:hover,.nav-menu button:hover{color:var(--navy);}
+.nav-menu .cur{color:var(--terra)!important;font-weight:500;}
+.sep{width:1px;height:18px;background:var(--border);margin:0 .3rem;}
+.nav-cta{background:var(--navy)!important;color:var(--parch)!important;padding:.42rem 1rem!important;margin-left:.5rem;transition:background .18s!important;}
+.nav-cta:hover{background:var(--terra)!important;}
+
+/* BLOG HERO */
+.blog-hero{background:var(--navy);padding:6rem 3.5rem 4rem;position:relative;overflow:hidden;}
+.blog-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(248,244,238,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(248,244,238,.02) 1px,transparent 1px);background-size:40px 40px;}
+.bh-kicker{font-family:var(--mono);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--terra);display:flex;align-items:center;gap:.7rem;margin-bottom:1.1rem;}
+.bh-kicker::before{content:'';width:1.2rem;height:1px;background:var(--terra);}
+.bh-title{font-family:var(--serif);font-size:clamp(2.4rem,5vw,4rem);font-weight:300;color:var(--parch);line-height:1.1;max-width:48rem;}
+.bh-title em{font-style:italic;color:var(--gold);}
+.bh-sub{font-size:1rem;color:rgba(248,244,238,.55);max-width:44rem;margin-top:1.2rem;line-height:1.75;}
+.bh-meta{display:flex;flex-wrap:wrap;gap:1.5rem;margin-top:2rem;}
+.bh-stat{text-align:center;}
+.bh-stat-n{font-family:var(--serif);font-size:1.8rem;font-weight:300;color:var(--parch);line-height:1;}
+.bh-stat-l{font-family:var(--mono);font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);margin-top:.2rem;}
+
+/* TOPIC FILTER */
+.topic-bar{background:var(--parch2);border-bottom:1px solid var(--border);padding:1.2rem 3.5rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;position:sticky;top:65px;z-index:100;}
+.topic-label{font-family:var(--mono);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mist);margin-right:.3rem;}
+.topic-btn{font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;padding:.3rem .8rem;background:none;border:1px solid var(--border);color:var(--slate);cursor:pointer;transition:all .18s;}
+.topic-btn:hover,.topic-btn.on{background:var(--navy);border-color:var(--navy);color:var(--parch);}
+
+/* ARTICLES LAYOUT */
+.articles-wrap{max-width:1100px;margin:0 auto;padding:4rem 3.5rem;}
+.articles-grid{display:grid;grid-template-columns:1fr;gap:0;}
+
+/* Article card */
+.article-card{border-bottom:1px solid var(--border);padding:3rem 0;display:grid;grid-template-columns:1fr 3fr;gap:3rem;align-items:start;transition:background .18s;cursor:pointer;}
+.article-card:last-child{border-bottom:none;}
+.article-card:hover{background:var(--parch2);padding-left:1rem;margin-left:-1rem;}
+.article-card.featured{grid-template-columns:1fr;background:var(--navy);color:var(--parch);padding:3rem;margin:-4rem 0 3rem;border-bottom:none;}
+.article-card.featured:hover{background:var(--navy2);padding-left:3rem;margin-left:0;}
+
+/* Featured card */
+.feat-kicker{font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:.75rem;}
+.feat-title{font-family:var(--serif);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;color:var(--parch);line-height:1.2;margin-bottom:1rem;}
+.feat-title em{font-style:italic;color:var(--gold);}
+.feat-body{font-size:.96rem;color:rgba(248,244,238,.65);line-height:1.8;max-width:62rem;margin-bottom:1.5rem;}
+.feat-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
+.feat-tag{font-family:var(--mono);font-size:.54rem;letter-spacing:.1em;padding:.2rem .6rem;border:1px solid rgba(248,244,238,.25);color:rgba(248,244,238,.6);}
+.feat-date{font-family:var(--mono);font-size:.56rem;color:rgba(248,244,238,.35);}
+.read-link{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);border:1px solid var(--terra);padding:.3rem .8rem;text-decoration:none;margin-left:auto;transition:all .18s;}
+.read-link:hover{background:var(--terra);color:#fff;}
+
+/* Side meta (non-featured) */
+.art-side{display:flex;flex-direction:column;gap:.6rem;}
+.art-num{font-family:var(--mono);font-size:.58rem;color:var(--mist);}
+.art-topic{font-family:var(--mono);font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .6rem;border:1px solid;color:var(--slate);border-color:var(--border);align-self:flex-start;}
+.art-topic.t-qol{color:var(--terra);border-color:var(--terra);}
+.art-topic.t-dig{color:var(--gold);border-color:var(--gold);}
+.art-topic.t-luti{color:var(--navy);border-color:var(--navy);}
+.art-topic.t-micro{color:var(--sage);border-color:var(--sage);}
+.art-topic.t-air{color:var(--slate);border-color:var(--slate);}
+.art-date{font-family:var(--mono);font-size:.54rem;color:var(--mist);}
+
+/* Article body */
+.art-main{}
+.art-title{font-family:var(--serif);font-size:1.35rem;font-weight:400;color:var(--navy);line-height:1.3;margin-bottom:.6rem;}
+.art-excerpt{font-size:.88rem;color:var(--slate);line-height:1.75;margin-bottom:.8rem;}
+.art-footer{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;}
+.art-tags{display:flex;gap:.35rem;flex-wrap:wrap;}
+.art-tag{font-family:var(--mono);font-size:.52rem;letter-spacing:.07em;padding:.15rem .48rem;background:var(--warm);color:var(--slate);}
+.art-read-time{font-family:var(--mono);font-size:.54rem;color:var(--mist);margin-left:auto;}
+
+/* Article reading panel */
+.article-full{
+  display:none; background:var(--parch); border:1px solid var(--border);
+  padding:3rem; margin-bottom:3rem;
+  border-left:3px solid var(--terra);
+}
+.article-full.open{display:block;}
+.article-full h3{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--navy);margin:1.5rem 0 .5rem;}
+.article-full h3:first-child{margin-top:0;}
+.article-full p{font-size:.92rem;color:var(--slate);line-height:1.85;margin-bottom:.9rem;}
+.article-full .math{font-family:var(--mono);font-size:.82rem;background:var(--warm);padding:.6rem 1rem;border-left:2px solid var(--terra);margin:1rem 0;color:var(--navy);}
+.close-art{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);border:1px solid var(--border);padding:.3rem .8rem;background:none;cursor:pointer;transition:all .18s;margin-top:1.5rem;display:block;}
+.close-art:hover{border-color:var(--terra);color:var(--terra);}
+
+/* Newsletter */
+.newsletter{background:var(--terra);padding:4rem 3.5rem;text-align:center;}
+.nl-title{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:300;color:#fff;margin-bottom:.8rem;}
+.nl-sub{font-size:.94rem;color:rgba(255,255,255,.7);max-width:36rem;margin:0 auto 2rem;line-height:1.7;}
+.nl-form{display:flex;gap:.7rem;max-width:420px;margin:0 auto;flex-wrap:wrap;}
+.nl-inp{flex:1;padding:.7rem 1rem;border:none;background:rgba(255,255,255,.15);color:#fff;font-family:var(--sans);font-size:.88rem;outline:none;border-bottom:1px solid rgba(255,255,255,.4);}
+.nl-inp::placeholder{color:rgba(255,255,255,.5);}
+.nl-btn{padding:.7rem 1.4rem;background:#fff;color:var(--terra);font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;transition:all .18s;}
+.nl-btn:hover{background:var(--navy);color:#fff;}
+
+/* Footer */
+.mini-footer{background:var(--navy);padding:2rem 3.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.mf-brand{font-family:var(--serif);font-size:.98rem;color:rgba(248,244,238,.5);}
+.mf-links{display:flex;gap:1.2rem;}
+.mf-links a{font-family:var(--mono);font-size:.56rem;color:rgba(248,244,238,.35);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .18s;}
+.mf-links a:hover{color:var(--gold);}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s;}
+.reveal.visible{opacity:1;transform:none;}
+@media(max-width:900px){
+  .site-nav{padding:.7rem 1.2rem;}
+  .blog-hero,.articles-wrap{padding:3rem 1.5rem;}
+  .topic-bar{padding:.9rem 1.5rem;top:58px;}
+  .article-card{grid-template-columns:1fr;gap:1rem;}
+  .mini-footer{padding:1.5rem 1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark"><span>M</span></div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">Dr. Mustafa Mutahari</span>
+      <span class="nav-logo-sub">Urban &amp; Transportation Systems</span>
+    </div>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#research">Research</a></li>
+    <li><a href="index.html#publications">Publications</a></li>
+    <li><div class="sep"></div></li>
+    <li><a href="blog.html" class="cur">Writing</a></li>
+    <li><a href="life.html">Life</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- BLOG HERO -->
+<div class="blog-hero">
+  <div class="bh-kicker">Ideas &amp; Writing</div>
+  <h1 class="bh-title">Thinking Out Loud About<br><em>Cities, Data &amp; the Future</em></h1>
+  <p class="bh-sub">A space where I develop new concepts, challenge established frameworks, and share ideas that don't yet fit into a journal article — on QOL/QOB, digital substitution, urban simulation, and what cities might become.</p>
+  <div class="bh-meta">
+    <div class="bh-stat"><div class="bh-stat-n">5</div><div class="bh-stat-l">Concepts</div></div>
+    <div class="bh-stat"><div class="bh-stat-n">4</div><div class="bh-stat-l">Topics</div></div>
+    <div class="bh-stat"><div class="bh-stat-n">2026</div><div class="bh-stat-l">Active</div></div>
+  </div>
+</div>
+
+<!-- TOPIC FILTER -->
+<div class="topic-bar">
+  <span class="topic-label">Filter by:</span>
+  <button class="topic-btn on" onclick="filterTopic('all',this)">All</button>
+  <button class="topic-btn" onclick="filterTopic('qolqob',this)">QOL/QOB</button>
+  <button class="topic-btn" onclick="filterTopic('digital',this)">Digital Substitution</button>
+  <button class="topic-btn" onclick="filterTopic('luti',this)">LUTI</button>
+  <button class="topic-btn" onclick="filterTopic('micro',this)">Microsimulation</button>
+  <button class="topic-btn" onclick="filterTopic('airfront',this)">Air-Front Smart City</button>
+</div>
+
+<!-- ARTICLES -->
+<div class="articles-wrap">
+
+  <!-- FEATURED -->
+  <div class="article-card featured reveal" data-topic="qolqob" id="qolqob">
+    <div class="feat-kicker">&#128161; Featured Concept &middot; QOL/QOB</div>
+    <h2 class="feat-title">Quality of Life &amp; Quality of Business:<br><em>A New Dual Lens for Smart Cities</em></h2>
+    <p class="feat-body">Traditional urban evaluations measure resident welfare — but in the modern city, business environment and resident quality-of-life are deeply intertwined. The QOL/QOB framework I've developed evaluates both dimensions simultaneously through accessibility modelling, offering a more complete picture of how cities perform across physical and digital space.</p>
+    <div class="feat-meta">
+      <span class="feat-tag">Framework</span>
+      <span class="feat-tag">Accessibility</span>
+      <span class="feat-tag">Smart Cities</span>
+      <span class="feat-date">April 2026</span>
+      <button class="read-link" onclick="toggleArt('art-qolqob')">Read More &darr;</button>
+    </div>
+    <div class="article-full" id="art-qolqob">
+      <h3>The Problem with Single-Dimension Urban Evaluation</h3>
+      <p>Most urban performance indices — whether the OECD Better Life Index or Japanese livability rankings — focus exclusively on resident quality-of-life. They capture housing, health, education, and commute times. But they largely ignore the business environment: whether a city can attract startups, support regional industry, or maintain a competitive economic base. This is especially problematic for mid-sized cities like Toyohashi, where industrial and startup ecosystems are central to long-term sustainability.</p>
+      <h3>The QOL/QOB Dual Framework</h3>
+      <p>The QOL/QOB framework I developed addresses this by building two parallel accessibility indices. The <strong>QOL (Quality of Life) index</strong> aggregates accessibility to services residents depend on: hospitals, schools, parks, transit, digital services. The <strong>QOB (Quality of Business) index</strong> captures what businesses need: talent pools, logistics networks, supplier proximity, digital infrastructure, and regulatory environments.</p>
+      <div class="math">QOL_i = Σ_j [ w_j · A_ij^physical + β_j · A_ij^digital ]<br>QOB_i = Σ_k [ γ_k · B_ik^physical + δ_k · B_ik^digital ]</div>
+      <p>Both indices can be computed at zone-level granularity and compared across cities. In my research, I applied this to Aichi (Japan), Singapore, and Munich — finding that cities optimized for QOB do not necessarily score well on QOL, and vice versa. The divergence reveals policy trade-offs that composite indices would obscure.</p>
+      <h3>Why This Matters for Policy</h3>
+      <p>The framework was adopted by the JST e-ASIA consortium as a shared evaluation tool across Japan, Thailand, and the Philippines — demonstrating that it can be applied cross-nationally, across different urban contexts. It gives planners a single, coherent tool for evaluating both the "liveability" and "investability" of a city simultaneously.</p>
+      <button class="close-art" onclick="toggleArt('art-qolqob')">&#8593; Collapse</button>
+    </div>
+  </div>
+
+  <!-- Article 2 -->
+  <div class="article-card reveal" data-topic="digital" id="digital-substitution">
+    <div class="art-side">
+      <span class="art-num">02</span>
+      <span class="art-topic t-dig">Digital Substitution</span>
+      <span class="art-date">March 2026</span>
+    </div>
+    <div class="art-main">
+      <h2 class="art-title">Why "Digital Substitution" is the Wrong Frame — and What to Replace It With</h2>
+      <p class="art-excerpt">The transport literature often treats digital activity as simply "replacing" physical trips. But my research shows the relationship is far more complex: digital services sometimes substitute, sometimes complement, and sometimes reshape travel in ways that neither term captures well. I propose a new taxonomy.</p>
+      <div class="art-footer">
+        <div class="art-tags"><span class="art-tag">ICT</span><span class="art-tag">Travel Demand</span><span class="art-tag">Theory</span></div>
+        <span class="art-read-time">8 min read</span>
+      </div>
+      <div class="article-full" id="art-dig">
+        <h3>The Standard Story and Its Limits</h3>
+        <p>The standard account in transport research is straightforward: digital technologies substitute for physical trips. Online shopping replaces the trip to the store. Remote work replaces the commute. Telemedicine replaces the hospital visit. Evidence from Japan's nationwide survey data confirms that some of this substitution is real and measurable.</p>
+        <h3>But the Reality is More Complex</h3>
+        <p>My research found that the relationship between digital service use and physical travel is not binary substitution but a four-way typology. First, <strong>strong substitution</strong>: activities like online banking and e-commerce clearly reduce trip generation. Second, <strong>complementarity</strong>: social media use and online coordination actually increase physical social activity. Third, <strong>restructuring</strong>: remote work doesn't simply eliminate commutes — it changes where people live, which in turn reshapes the entire urban structure. Fourth, <strong>new demand creation</strong>: new digital platforms generate entirely new categories of physical trips (delivery drivers, data center workers).</p>
+        <h3>Implications for LUTI Modelling</h3>
+        <p>This taxonomy has direct implications for land use-transport interaction models. Incorporating digital accessibility as a variable in LUTI models requires distinguishing among these four modes, not treating "digital activity" as a simple deduction from trip tables. My modified microsimulation model handles this by adding a digital accessibility layer that interacts with residential location choice through a social network component.</p>
+        <button class="close-art" onclick="toggleArt('art-dig')">&#8593; Collapse</button>
+      </div>
+      <button onclick="toggleArt('art-dig')" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);background:none;border:none;cursor:pointer;margin-top:.8rem;padding:0;">Read More &darr;</button>
+    </div>
+  </div>
+
+  <!-- Article 3 -->
+  <div class="article-card reveal" data-topic="luti" id="luti">
+    <div class="art-side">
+      <span class="art-num">03</span>
+      <span class="art-topic t-luti">LUTI Modelling</span>
+      <span class="art-date">February 2026</span>
+    </div>
+    <div class="art-main">
+      <h2 class="art-title">Land Use–Transport Interaction Models Need a Digital Layer</h2>
+      <p class="art-excerpt">Classical LUTI models were built for a world where accessibility meant physical proximity. In the digital era, this is no longer sufficient. Here I argue for a new generation of LUTI models that incorporate digital accessibility, ICT adoption rates, and social network topology as first-class variables.</p>
+      <div class="art-footer">
+        <div class="art-tags"><span class="art-tag">LUTI</span><span class="art-tag">Modelling</span><span class="art-tag">Digital Layer</span></div>
+        <span class="art-read-time">11 min read</span>
+      </div>
+      <button onclick="toggleArt('art-luti')" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);background:none;border:none;cursor:pointer;margin-top:.8rem;padding:0;">Read More &darr;</button>
+      <div class="article-full" id="art-luti">
+        <h3>The Classical LUTI Framework</h3>
+        <p>Land use-transport interaction models — from Lowry's gravity model to modern agent-based systems — represent the bidirectional feedback between where people live and work (land use) and how they move (transport). Accessibility is the key coupling variable: zones with better transport access attract more activity, which generates more travel, which in turn affects land use patterns.</p>
+        <h3>What's Missing in a Digital World</h3>
+        <p>In the classical framework, accessibility is purely a function of physical distance and transport network quality. But in contemporary cities, a growing share of economic and social activity occurs in digital space. A household in a peripheral zone with poor physical accessibility to services may have excellent digital accessibility — through e-commerce, remote work, and online government services. Classical LUTI models treat this household as poorly connected; in reality, it may be well-connected along a different dimension.</p>
+        <h3>The Digital-Augmented LUTI Model</h3>
+        <p>In my research, I propose extending the classical LUTI accessibility variable to include a digital component. The modified accessibility measure integrates physical network-based accessibility with a digital accessibility term capturing ICT infrastructure quality, digital service adoption, and social network density — the last because peer-to-peer digital adoption follows network topology, not geographic proximity. This modified model, calibrated on Japanese city data, produces meaningfully different predictions for residential location choice, especially under scenarios of demographic aging and telecommunications infrastructure investment.</p>
+        <button class="close-art" onclick="toggleArt('art-luti')">&#8593; Collapse</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Article 4 -->
+  <div class="article-card reveal" data-topic="micro" id="microsimulation">
+    <div class="art-side">
+      <span class="art-num">04</span>
+      <span class="art-topic t-micro">Microsimulation</span>
+      <span class="art-date">January 2026</span>
+    </div>
+    <div class="art-main">
+      <h2 class="art-title">Building a City That Doesn't Exist Yet: Notes on Urban Microsimulation</h2>
+      <p class="art-excerpt">A virtual city built from actual statistical parameters — what does it look like, what can it tell us, and what are its limits? A conceptual and technical account of how I built and validated the microsimulation model at the core of my doctoral research.</p>
+      <div class="art-footer">
+        <div class="art-tags"><span class="art-tag">Agent-Based</span><span class="art-tag">Validation</span><span class="art-tag">Methodology</span></div>
+        <span class="art-read-time">13 min read</span>
+      </div>
+      <button onclick="toggleArt('art-micro')" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);background:none;border:none;cursor:pointer;margin-top:.8rem;padding:0;">Read More &darr;</button>
+      <div class="article-full" id="art-micro">
+        <h3>Why Simulate a City?</h3>
+        <p>You cannot run controlled experiments on real cities. You cannot hold the economy constant while you vary the broadband penetration rate, or freeze demographics while you test the effect of a new transit line. Microsimulation offers a partial solution: a synthetic city, built from real statistical distributions, on which you can run experiments.</p>
+        <h3>How the Model Works</h3>
+        <p>The model I developed for my doctoral research is a multi-layer network microsimulation. The population layer contains synthetic agents — households and firms — with demographic and economic attributes drawn from Japanese census and economic census data. The physical layer represents the transport and land use network. The digital layer, which is the novel contribution, captures ICT infrastructure, digital service availability, and agent-level technology adoption. The social network layer models interpersonal relationships, which influence both digital adoption and residential location choice.</p>
+        <h3>Validation Challenges</h3>
+        <p>Validating such a model is genuinely difficult. Direct empirical comparison is impossible when the synthetic city doesn't correspond to any single real city. I used a combination of aggregate statistical validation (comparing emergent city-level statistics with Japanese urban averages), behavioral validation (comparing agent decision patterns with survey evidence), and sensitivity analysis (testing how model outputs respond to parameter perturbations). The model performs well on aggregate metrics and behavioral patterns but is sensitive to the social network topology specification — an area for future work.</p>
+        <button class="close-art" onclick="toggleArt('art-micro')">&#8593; Collapse</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Article 5 -->
+  <div class="article-card reveal" data-topic="airfront" id="airfront">
+    <div class="art-side">
+      <span class="art-num">05</span>
+      <span class="art-topic t-air">Air-Front Smart City</span>
+      <span class="art-date">November 2025</span>
+    </div>
+    <div class="art-main">
+      <h2 class="art-title">What is an "Air-Front Smart City" and Why Does It Matter?</h2>
+      <p class="art-excerpt">The "Air-Front Smart City" concept is not just about airports. It describes a new form of regional development anchored by air connectivity, logistics infrastructure, and innovation ecosystems — with Aichi's Chubu Centrair International Airport region as the leading Japanese case.</p>
+      <div class="art-footer">
+        <div class="art-tags"><span class="art-tag">Smart City</span><span class="art-tag">Aichi</span><span class="art-tag">Regional Dev.</span></div>
+        <span class="art-read-time">7 min read</span>
+      </div>
+      <button onclick="toggleArt('art-airfront')" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);background:none;border:none;cursor:pointer;margin-top:.8rem;padding:0;">Read More &darr;</button>
+      <div class="article-full" id="art-airfront">
+        <h3>Beyond the Airport City</h3>
+        <p>Airport city concepts have been discussed in urban planning since the 1990s. What distinguishes the "Air-Front Smart City" concept — as developed in my research and the JST e-ASIA project — is the integration of digital infrastructure, startup ecosystems, and quality-of-life evaluation. An Air-Front Smart City is not simply a zone around an airport; it is a policy concept that integrates physical connectivity (air, road, rail), digital connectivity (5G, IoT, data infrastructure), economic ecosystem (startups, post-harvest agriculture, manufacturing innovation), and governance (smart city platform, data-driven policy evaluation).</p>
+        <h3>The Aichi Case</h3>
+        <p>Aichi Prefecture's approach, centred on Chubu Centrair International Airport and the Toyota industrial cluster, represents a distinctive model. Unlike Singapore's integrated city-state approach or Munich's airport-industry nexus, Aichi combines a global manufacturing base with an emerging startup ecosystem and a rural hinterland with significant agricultural innovation potential. Evaluating this complex through the QOL/QOB framework reveals that Aichi's competitive advantage lies in QOB — business environment quality — while QOL scores, particularly on digital service accessibility in peripheral zones, leave room for improvement.</p>
+        <button class="close-art" onclick="toggleArt('art-airfront')">&#8593; Collapse</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /articles-wrap -->
+
+<!-- NEWSLETTER -->
+<div class="newsletter">
+  <h2 class="nl-title">Stay Updated</h2>
+  <p class="nl-sub">New ideas and concepts posted regularly. Subscribe to be notified when I publish something new &mdash; no spam, just research.</p>
+  <div class="nl-form">
+    <input class="nl-inp" type="email" placeholder="your@email.com" id="nl-email"/>
+    <button class="nl-btn" onclick="nlSub()">Subscribe</button>
+  </div>
+  <p id="nl-msg" style="font-family:var(--mono);font-size:.62rem;color:rgba(255,255,255,.7);margin-top:.8rem;display:none;"></p>
+</div>
+
+<!-- FOOTER -->
+<div class="mini-footer">
+  <span class="mf-brand">Dr. Mustafa Mutahari &mdash; Ideas &amp; Writing</span>
+  <div class="mf-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#publications">Publications</a>
+    <a href="life.html">Life</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="https://orcid.org/0000-0003-3295-1567" target="_blank">ORCID</a>
+  </div>
+</div>
+
+<script>
+const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});},{threshold:.06});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+function filterTopic(topic,btn){
+  document.querySelectorAll('.topic-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.article-card').forEach(card=>{
+    if(topic==='all'||card.dataset.topic===topic){card.style.display='';}
+    else card.style.display='none';
+  });
+}
+function toggleArt(id){
+  const el=document.getElementById(id);
+  if(el)el.classList.toggle('open');
+}
+function nlSub(){
+  const em=document.getElementById('nl-email').value.trim();
+  if(!em||!em.includes('@')){return;}
+  const msg=document.getElementById('nl-msg');
+  msg.textContent='&#10003; Thank you! You will be notified when new ideas are published.';
+  msg.style.display='block';
+  document.getElementById('nl-email').value='';
+}
+// Handle anchor links
+const hash=location.hash.replace('#','');
+if(hash){const el=document.getElementById(hash);if(el)el.scrollIntoView({behavior:'smooth'});}
+</script>
+</body>
+</html>
