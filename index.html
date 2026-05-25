@@ -442,10 +442,17 @@ footer p{font-family:var(--mono);font-size:.52rem;color:var(--text3);}
   margin-top:.25rem;
   transition:opacity .2s;
 }
-.clickable-research:hover::after{opacity:1;}
+/* Hide Google Translate toolbar — we use our own UI */
+.goog-te-banner-frame,.skiptranslate{display:none!important;}
+body{top:0!important;}
+#google_translate_element{display:none;}
+.goog-te-gadget{display:none;}
 </style>
 </head>
 <body>
+
+<!-- Hidden Google Translate element — used by setLang() for full-page translation -->
+<div id="google_translate_element" style="display:none;"></div>
 
 <div id="progress"></div>
 
@@ -476,9 +483,8 @@ footer p{font-family:var(--mono);font-size:.52rem;color:var(--text3);}
     <li><a href="#publications" data-i18n="nav_pubs">Publications</a></li>
     <li><a href="#presentations" data-i18n="nav_talks">Talks</a></li>
     <li><div class="nav-sep"></div></li>
-    <li><a href="#service" data-i18n="nav_service">Service</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
     <li><button class="lang-btn" onclick="toggleLangPanel()" title="Change language">🌐 EN</button></li>
-    <li><a href="#contact" class="nav-cta" data-i18n="nav_contact">Contact</a></li>
   </ul>
 </nav>
 
@@ -1204,6 +1210,13 @@ footer p{font-family:var(--mono);font-size:.52rem;color:var(--text3);}
     <div class="modal-sub">Related Presentations</div>
     <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://researchmap.jp/mustafa-mutahari/presentations/53360202" target="_blank">QOL/QOB Evaluation</a> — e-ASIA Symposium 2026, Nagoya (Invited)</div></div>
     <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://researchmap.jp/mustafa-mutahari/presentations/53360319" target="_blank">QOL &amp; QOB Evaluation in Physical and Cyber Spaces</a> — e-ASIA Symposium 2024, Baguio (Invited)</div></div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Media Coverage</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://medicalxpress.com/news/2025-11-digital-access-convenience-fully-physical.html" target="_blank">Digital access improves convenience, but cannot fully replace physical services</a></div><div class="modal-pub-meta">Science X / medicalxpress.com · Nov 13, 2025</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://scienmag.com/digital-access-enhances-convenience-but-cannot-completely-substitute-physical-services-study-finds/" target="_blank">Digital Access Enhances Convenience but Cannot Completely Substitute Physical Services, Study Finds</a></div><div class="modal-pub-meta">Scienmag · Nov 14, 2025</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://www.atpress.ne.jp/news/1428748" target="_blank">デジタルサービスの代替利用による、都市における公平性と持続可能性への影響に関する研究実施</a></div><div class="modal-pub-meta">@Press · Jul 9, 2025</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://www.tonichi.net/news/index.php?id=116328" target="_blank">車持つほどネットで購入？</a></div><div class="modal-pub-meta">東日新聞 (Tonichi Shimbun) · Jun 19, 2025</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://portalenf.com/2025/11/o-acesso-digital-melhora-a-conveniencia-mas-nao-pode-substituir-totalmente-os-servicos-fisicos/#google_vignette" target="_blank">O acesso digital melhora a conveniência, mas não pode substituir totalmente os serviços físicos</a></div><div class="modal-pub-meta">Portal ENF (Portuguese) · Nov 2025</div></div>
   </div>
 </div>
 
@@ -1228,6 +1241,16 @@ footer p{font-family:var(--mono);font-size:.52rem;color:var(--text3);}
     <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://researchmap.jp/mustafa-mutahari/presentations/53360256" target="_blank">QOL &amp; QOB Application for Air-front Smart City Policy Evaluation</a> — e-ASIA Symposium 2025, Phuket (Invited)</div></div>
     <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://researchmap.jp/mustafa-mutahari/presentations/53360764" target="_blank">QOL and QOB Accessibility-Based Evaluation Method for Air-front Smart Cities</a> — 16th EASTS, Surakarta 2025</div></div>
     <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://researchmap.jp/mustafa-mutahari/presentations/53390602" target="_blank">QOL-QOB Based Air-Front Smart City Evaluation for Startup Development</a> — 72nd IP Conference, Okayama 2025</div></div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Media Coverage</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://blog.mdpi.com/2026/05/22/how-can-cities-become-more-attractive-destinations-for-start-ups/" target="_blank">How Can Cities Become More Attractive Destinations for Start-ups?</a></div><div class="modal-pub-meta">MDPI Blog · May 22, 2026</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://www.eurekalert.org/news-releases/1127192" target="_blank">Toward startup-friendly smart cities</a></div><div class="modal-pub-meta">EurekAlert! (English) · May 2026</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://www.eurekalert.org/news-releases/1127192?language=japanese" target="_blank">スタートアップに適したスマートシティの実現：テクノロジーだけではなく、政策・アクセシビリティ・QOL が主要な決定要因</a></div><div class="modal-pub-meta">EurekAlert! (Japanese) · May 2026</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://phys.org/news/2026-05-tax-access-quality-life-startup.html" target="_blank">Tax cuts, access and quality of life shape startup-friendly smart cities</a></div><div class="modal-pub-meta">phys.org · May 2026</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://scienmag.com/advancing-smart-cities-to-empower-startups/" target="_blank">Advancing Smart Cities to Empower Startups</a></div><div class="modal-pub-meta">Scienmag · May 2026</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://higashiaichi.jp/news/detail.php?id=27138" target="_blank">企業の街選び、決め手は「税金」と「生活の質」 豊橋技科大、スタートアップ誘致の新指標を発表</a></div><div class="modal-pub-meta">Higashi Aichi Shimbun · May 2026</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://www.tonichi.net/news/index.php?id=122659" target="_blank">誘致のカギは減税とQOL向上 ― 豊橋技科大研究チームがスタートアップ誘致分析</a></div><div class="modal-pub-meta">東日新聞 (Tonichi Shimbun) · May 2026</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://www.minuszos.hu/kiderult-mitol-startup-barat-egy-varos/" target="_blank">Kiderült mitől startup barát egy város</a></div><div class="modal-pub-meta">Minuszos.hu (Hungarian) · May 2026</div></div>
   </div>
 </div>
 
@@ -1251,6 +1274,10 @@ footer p{font-family:var(--mono);font-size:.52rem;color:var(--text3);}
     <div class="modal-divider"></div>
     <div class="modal-sub">Related Presentations</div>
     <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://researchmap.jp/mustafa-mutahari/presentations/53390773" target="_blank">Parameter Setting Examination of Social Dynamic Simulation Using a Multi-layer Network</a> — WCTR 2023, Montreal</div></div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Media Coverage</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://medicalxpress.com/news/2025-11-digital-access-convenience-fully-physical.html" target="_blank">Digital access improves convenience, but cannot fully replace physical services</a></div><div class="modal-pub-meta">Science X / medicalxpress.com · Nov 13, 2025</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://www.atpress.ne.jp/news/1428748" target="_blank">デジタルサービスの代替利用による、都市における公平性と持続可能性への影響に関する研究実施</a></div><div class="modal-pub-meta">@Press · Jul 9, 2025</div></div>
   </div>
 </div>
 
@@ -1271,6 +1298,9 @@ footer p{font-family:var(--mono);font-size:.52rem;color:var(--text3);}
     <div class="modal-divider"></div>
     <div class="modal-sub">Related Presentations</div>
     <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://researchmap.jp/mustafa-mutahari/presentations/53390730" target="_blank">Large-scale Disaster Evacuation Choice Behavior Modelling</a> — 15th EASTS, Kuala Lumpur 2023</div></div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Media Coverage</div>
+    <div class="modal-pub-item"><div class="modal-pub-title" style="color:var(--text3);font-style:italic;font-size:.82rem;">No direct media coverage identified for this research category at this time.</div></div>
   </div>
 </div>
 
@@ -1288,6 +1318,11 @@ footer p{font-family:var(--mono);font-size:.52rem;color:var(--text3);}
     <div class="modal-sub">Key Applied Output</div>
     <div class="modal-pub-item"><div class="modal-pub-title">Integrated Evaluation of Real and Virtual Networks</div><div class="modal-pub-meta">European Transport Conference 2024, Antwerp</div></div>
     <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://researchmap.jp/mustafa-mutahari/presentations/53360656" target="_blank">Evaluation of Kabul BRT Proposed by KUDF</a></div><div class="modal-pub-meta">14th EASTS, Hiroshima, 2021</div></div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Media Coverage</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://www.eurekalert.org/news-releases/1127192" target="_blank">Toward startup-friendly smart cities</a></div><div class="modal-pub-meta">EurekAlert! (English) · May 2026</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://phys.org/news/2026-05-tax-access-quality-life-startup.html" target="_blank">Tax cuts, access and quality of life shape startup-friendly smart cities</a></div><div class="modal-pub-meta">phys.org · May 2026</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://medicalxpress.com/news/2025-11-digital-access-convenience-fully-physical.html" target="_blank">Digital access improves convenience, but cannot fully replace physical services</a></div><div class="modal-pub-meta">Science X / medicalxpress.com · Nov 2025</div></div>
   </div>
 </div>
 
@@ -1344,7 +1379,7 @@ document.addEventListener('keydown',e=>{
   if(e.key==='Escape')document.querySelectorAll('.modal-overlay.open').forEach(m=>closeModal(m.id));
 });
 
-// Language toggle
+// Language toggle panel
 function toggleLangPanel(){
   document.getElementById('langPanel').classList.toggle('open');
 }
@@ -1353,55 +1388,121 @@ document.addEventListener('click',e=>{
     document.getElementById('langPanel').classList.remove('open');
 });
 
-// Translation strings
-const T={
-  en:{nav_about:'About',nav_research:'Research',nav_pubs:'Publications',nav_talks:'Talks',nav_service:'Service',nav_contact:'Contact'},
-  ja:{nav_about:'概要',nav_research:'研究',nav_pubs:'論文',nav_talks:'発表',nav_service:'学術活動',nav_contact:'お問い合わせ'},
-  de:{nav_about:'Über',nav_research:'Forschung',nav_pubs:'Publikationen',nav_talks:'Vorträge',nav_service:'Service',nav_contact:'Kontakt'},
-  fr:{nav_about:'À propos',nav_research:'Recherche',nav_pubs:'Publications',nav_talks:'Conférences',nav_service:'Service',nav_contact:'Contact'},
-  ar:{nav_about:'نبذة',nav_research:'بحث',nav_pubs:'منشورات',nav_talks:'محادثات',nav_service:'خدمة',nav_contact:'تواصل'},
-  fa:{nav_about:'درباره',nav_research:'پژوهش',nav_pubs:'نشریات',nav_talks:'سخنرانی‌ها',nav_service:'خدمات',nav_contact:'تماس'},
-  zh:{nav_about:'关于',nav_research:'研究',nav_pubs:'出版物',nav_talks:'演讲',nav_service:'服务',nav_contact:'联系'},
-  ko:{nav_about:'소개',nav_research:'연구',nav_pubs:'논문',nav_talks:'발표',nav_service:'서비스',nav_contact:'연락처'},
-};
+// Full-page translation via Google Translate
+// Maps our language codes to Google Translate language codes
+const LANG_MAP={en:'en',ja:'ja',de:'de',fr:'fr',ar:'ar',fa:'fa',zh:'zh-CN',ko:'ko'};
+
 function setLang(lang,btn){
+  // Update button states
   document.querySelectorAll('.lang-option').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   const lbl=document.querySelector('.lang-btn');
   lbl.textContent='🌐 '+lang.toUpperCase();
-  const t=T[lang]||T.en;
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const key=el.getAttribute('data-i18n');
-    if(t[key])el.textContent=t[key];
-  });
   document.getElementById('langPanel').classList.remove('open');
-  if(lang==='ar'||lang==='fa')document.documentElement.setAttribute('dir','rtl');
+
+  // RTL for Arabic and Dari/Persian
+  if(lang==='ar'||lang==='fa') document.documentElement.setAttribute('dir','rtl');
   else document.documentElement.removeAttribute('dir');
+
+  if(lang==='en'){
+    // Restore original page — reload without translate cookie
+    document.cookie='googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    document.cookie='googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.'+location.hostname;
+    // Remove translate frame if present and reload
+    const gf=document.getElementById(':1.container');
+    if(gf) gf.remove();
+    location.reload();
+    return;
+  }
+
+  const glCode=LANG_MAP[lang]||lang;
+  // Set the Google Translate cookie
+  document.cookie='googtrans=/en/'+glCode+'; path=/';
+  document.cookie='googtrans=/en/'+glCode+'; path=/; domain=.'+location.hostname;
+
+  // Trigger Google Translate element if already loaded
+  const sel=document.querySelector('.goog-te-combo');
+  if(sel){
+    sel.value=glCode;
+    sel.dispatchEvent(new Event('change'));
+  } else {
+    // Load Google Translate script dynamically if not yet loaded
+    if(!document.getElementById('gt-script')){
+      window.googleTranslateElementInit=function(){
+        new google.translate.TranslateElement({
+          pageLanguage:'en',
+          includedLanguages:'ja,de,fr,ar,fa,zh-CN,ko',
+          autoDisplay:false,
+          layout:google.translate.TranslateElement.InlineLayout.SIMPLE
+        },'google_translate_element');
+        // Auto-select the chosen language after init
+        setTimeout(()=>{
+          const s=document.querySelector('.goog-te-combo');
+          if(s){s.value=glCode;s.dispatchEvent(new Event('change'));}
+        },800);
+      };
+      const s=document.createElement('script');
+      s.id='gt-script';
+      s.src='//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      document.head.appendChild(s);
+    }
+  }
 }
 
-// Contact form via mailto
-function submitForm(){
+// Contact form — sends via Formspree (no mail client needed)
+async function submitForm(){
   const name=document.getElementById('f-name').value.trim();
   const email=document.getElementById('f-email').value.trim();
   const purpose=document.getElementById('f-purpose').value;
   const msg=document.getElementById('f-msg').value.trim();
   const result=document.getElementById('f-result');
+
+  // Validation
   if(!name||!email||!purpose||!msg){
     result.className='form-msg err';result.style.display='block';
     result.textContent='Please fill in all required fields.';return;
   }
-  if(!email.includes('@')){
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
     result.className='form-msg err';result.style.display='block';
     result.textContent='Please enter a valid email address.';return;
   }
+
   const affil=document.getElementById('f-affil').value.trim();
-  const subject=encodeURIComponent('['+purpose+'] Message via mutahari.com — from '+name);
-  const body=encodeURIComponent(
-    'Name: '+name+'\nEmail: '+email+'\nAffiliation: '+(affil||'—')+'\nPurpose: '+purpose+'\n\nMessage:\n'+msg
-  );
-  window.location.href='mailto:mutahari@ace.tut.ac.jp?subject='+subject+'&body='+body;
-  result.className='form-msg ok';result.style.display='block';
-  result.textContent='Your mail client will open now. Thank you for reaching out to Dr. Mutahari.';
+  const btn=document.querySelector('.form-submit');
+  btn.disabled=true;
+  btn.textContent='Sending…';
+  result.style.display='none';
+
+  try{
+    const res=await fetch('https://formspree.io/f/xwpbwkoa',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        name:name,
+        email:email,
+        affiliation:affil||'—',
+        purpose:purpose,
+        message:msg,
+        _subject:'['+purpose+'] Message via mutahari.com — from '+name,
+        _replyto:email
+      })
+    });
+    if(res.ok){
+      result.className='form-msg ok';result.style.display='block';
+      result.textContent='✓ Your message has been sent successfully. Dr. Mutahari will get back to you.';
+      // Clear form
+      ['f-name','f-email','f-affil','f-msg'].forEach(id=>document.getElementById(id).value='');
+      document.getElementById('f-purpose').value='';
+      btn.textContent='Message Sent ✓';
+    } else {
+      throw new Error('Server error '+res.status);
+    }
+  }catch(err){
+    result.className='form-msg err';result.style.display='block';
+    result.textContent='Something went wrong. Please try again or email directly: mutahari@ace.tut.ac.jp';
+    btn.disabled=false;
+    btn.textContent='Send Message →';
+  }
 }
 
 // Smooth anchor scroll
