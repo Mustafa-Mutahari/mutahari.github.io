@@ -1,851 +1,1479 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Mustafa Mutahari | Research Fellow, TUT</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Dr. Mustafa Mutahari | Urban & Transportation Systems Researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
 <style>
-  :root {
-    --ink: #0e1117;
-    --paper: #f5f2ec;
-    --accent: #b84c00;
-    --accent2: #2e5fa3;
-    --muted: #6b6660;
-    --line: rgba(14,17,23,0.12);
-    --card: #ffffff;
-    --tag-bg: #e8e3da;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
+:root{
+  --bg:#0a0d12;--bg2:#0e1218;--bg3:#141920;--bg4:#1a2130;
+  --surface:#1e2535;--surface2:#252d3f;
+  --line:rgba(255,255,255,.06);--line2:rgba(255,255,255,.1);
+  --gold:#c9a84c;--gold2:#e8c97a;--gold3:rgba(201,168,76,.15);
+  --teal:#2dd4bf;--teal2:rgba(45,212,191,.12);
+  --rust:#e07a5f;--rust2:rgba(224,122,95,.12);
+  --text:#e8ecf3;--text2:#8a95a8;--text3:#5c6780;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans','Helvetica Neue',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden;line-height:1.7;}
+::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-thumb{background:var(--gold3);}
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--gold3);color:var(--gold2);}
 
-  /* ─── NAV ─── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(245,242,236,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 clamp(1.5rem, 5vw, 4rem);
-    height: 64px;
-  }
-  .nav-brand {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.1rem;
-    color: var(--ink);
-    text-decoration: none;
-    letter-spacing: -0.02em;
-  }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--accent); }
+/* PROGRESS */
+#progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--teal));z-index:1000;transition:width .1s;}
 
-  /* ─── HERO ─── */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 64px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 60% 60% at 75% 40%, rgba(46,95,163,0.06) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 50% at 20% 70%, rgba(184,76,0,0.05) 0%, transparent 60%);
-    pointer-events: none;
-  }
-  .hero-grid-bg {
-    position: absolute; inset: 0; pointer-events: none;
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
-    opacity: 0.5;
-  }
-  .hero-left {
-    display: flex; flex-direction: column; justify-content: center;
-    padding: clamp(3rem, 8vw, 7rem) clamp(1.5rem, 5vw, 5rem);
-    position: relative; z-index: 1;
-  }
-  .hero-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent2);
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.1s forwards;
-  }
-  .hero-name {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2.8rem, 6vw, 5rem);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    color: var(--ink);
-    margin-bottom: 0.5rem;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.2s forwards;
-  }
-  .hero-name span { font-style: italic; color: var(--accent); }
-  .hero-title {
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--muted);
-    margin-bottom: 2rem;
-    max-width: 380px;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.35s forwards;
-  }
-  .hero-tags {
-    display: flex; flex-wrap: wrap; gap: 0.5rem;
-    margin-bottom: 2.5rem;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.45s forwards;
-  }
-  .tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.05em;
-    padding: 0.3rem 0.75rem;
-    background: var(--tag-bg);
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    color: var(--ink);
-  }
-  .hero-actions {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.55s forwards;
-  }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.75rem 1.75rem;
-    background: var(--ink);
-    color: var(--paper);
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    border-radius: 2px;
-    transition: background 0.2s, transform 0.15s;
-  }
-  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
-  .btn-ghost {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    padding: 0.75rem 1.75rem;
-    background: transparent;
-    color: var(--ink);
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    transition: border-color 0.2s, color 0.2s, transform 0.15s;
-  }
-  .btn-ghost:hover { border-color: var(--ink); transform: translateY(-1px); }
-  .hero-right {
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    padding: clamp(3rem, 6vw, 5rem);
-    position: relative; z-index: 1;
-  }
-  .profile-frame {
-    width: clamp(220px, 28vw, 340px);
-    aspect-ratio: 1;
-    position: relative;
-    opacity: 0;
-    animation: fadeIn 0.9s 0.6s forwards;
-  }
-  .profile-frame::before {
-    content: '';
-    position: absolute;
-    inset: -12px -12px 12px 12px;
-    border: 1px solid var(--accent2);
-    border-radius: 2px;
-    opacity: 0.4;
-  }
-  .profile-frame::after {
-    content: '';
-    position: absolute;
-    inset: 12px -12px -12px 12px;
-    border: 1px solid var(--accent);
-    border-radius: 2px;
-    opacity: 0.3;
-  }
-  .profile-img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    border-radius: 2px;
-    position: relative; z-index: 1;
-    filter: grayscale(15%) contrast(1.05);
-  }
-  .profile-placeholder {
-    width: 100%; height: 100%;
-    background: linear-gradient(135deg, #ddd6ca 0%, #c8bfb0 100%);
-    border-radius: 2px;
-    position: relative; z-index: 1;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 1rem;
-  }
-  .profile-initials {
-    font-family: 'DM Serif Display', serif;
-    font-size: 4rem;
-    color: var(--muted);
-    letter-spacing: -0.05em;
-  }
-  .profile-meta {
-    margin-top: 2rem; text-align: center;
-    opacity: 0;
-    animation: fadeUp 0.7s 0.8s forwards;
-  }
-  .profile-meta .inst {
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-  }
-  .profile-meta .orcid {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--accent2);
-    text-decoration: none;
-    display: block;
-    margin-top: 0.3rem;
-  }
+/* NAV */
+nav{
+  position:fixed;top:2px;left:0;right:0;z-index:900;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3.5rem;height:60px;
+  background:rgba(10,13,18,.92);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--line);
+}
+.nav-brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;}
+.nav-mark{
+  width:32px;height:32px;border:1px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.nav-mark span{font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--gold);}
+.nav-brand-name{font-family:var(--serif);font-size:.95rem;color:var(--text);letter-spacing:.02em;}
+.nav-brand-sub{font-family:var(--mono);font-size:.46rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);display:block;}
+.nav-links{display:flex;align-items:center;gap:0;list-style:none;}
+.nav-links a{font-family:var(--mono);font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);padding:.4rem .7rem;display:block;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-sep{width:1px;height:14px;background:var(--line2);margin:0 .25rem;}
+.nav-cta{
+  border:1px solid var(--gold)!important;color:var(--gold)!important;
+  padding:.35rem .85rem!important;transition:all .2s!important;
+}
+.nav-cta:hover{background:var(--gold)!important;color:var(--bg)!important;}
+.lang-btn{
+  font-family:var(--mono);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text3);padding:.3rem .6rem;border:1px solid var(--line2);
+  background:none;cursor:pointer;transition:all .2s;
+}
+.lang-btn:hover,.lang-btn.active{border-color:var(--teal);color:var(--teal);}
 
-  /* ─── SECTIONS ─── */
-  section { padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 8vw, 8rem); }
-  section:nth-child(even) { background: var(--card); }
-  .section-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.75rem;
-  }
-  .section-heading {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 3rem;
-    max-width: 600px;
-  }
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding:6rem 3.5rem 4rem;position:relative;overflow:hidden;
+}
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 80%);
+}
+.hero-glow{
+  position:absolute;top:-20%;right:-10%;width:600px;height:600px;
+  background:radial-gradient(circle,rgba(201,168,76,.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-glow2{
+  position:absolute;bottom:-20%;left:-10%;width:500px;height:500px;
+  background:radial-gradient(circle,rgba(45,212,191,.04) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-inner{position:relative;z-index:2;max-width:900px;}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:.7rem;margin-bottom:1.6rem;
+  opacity:0;animation:fadeUp .7s .1s var(--ease) forwards;
+}
+.hero-eyebrow::before{content:'';width:2rem;height:1px;background:var(--gold);}
+.hero-name{
+  font-family:var(--serif);font-size:clamp(3.5rem,8vw,7rem);font-weight:300;
+  line-height:1.0;letter-spacing:-.02em;color:var(--text);margin-bottom:.5rem;
+  opacity:0;animation:fadeUp .8s .2s var(--ease) forwards;
+}
+.hero-name em{font-style:italic;color:var(--gold);display:block;}
+.hero-role{
+  font-size:1.05rem;font-weight:300;color:var(--text2);
+  max-width:560px;margin-bottom:2.5rem;line-height:1.75;
+  opacity:0;animation:fadeUp .7s .35s var(--ease) forwards;
+}
+/* RESEARCH INTEREST CHIPS — clickable, open sub-pages */
+.interest-chips{
+  display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:3rem;
+  opacity:0;animation:fadeUp .7s .45s var(--ease) forwards;
+}
+.int-chip{
+  font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.38rem .9rem;border:1px solid var(--line2);color:var(--text2);
+  cursor:pointer;transition:all .22s var(--ease);position:relative;overflow:hidden;
+  background:rgba(255,255,255,.02);
+}
+.int-chip::before{
+  content:'';position:absolute;inset:0;
+  background:var(--gold3);transform:scaleX(0);transform-origin:left;transition:transform .22s var(--ease);
+}
+.int-chip:hover{border-color:var(--gold);color:var(--gold);}
+.int-chip:hover::before{transform:scaleX(1);}
+.int-chip span{position:relative;z-index:1;}
+.hero-actions{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  opacity:0;animation:fadeUp .7s .55s var(--ease) forwards;
+}
+.btn-gold{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.65rem 1.5rem;background:var(--gold);color:var(--bg);
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:400;transition:all .2s;
+}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-1px);}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.65rem 1.5rem;border:1px solid var(--line2);color:var(--text2);
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;
+  transition:all .2s;
+}
+.btn-outline:hover{border-color:var(--text2);color:var(--text);transform:translateY(-1px);}
+.hero-scroll{
+  position:absolute;bottom:2.5rem;left:3.5rem;
+  display:flex;align-items:center;gap:.6rem;
+  font-family:var(--mono);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);
+  opacity:0;animation:fadeIn 1s 1.2s forwards;
+}
+.scroll-line{width:2rem;height:1px;background:var(--text3);}
 
-  /* ─── ABOUT ─── */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-  .about-text p {
-    font-size: 1.05rem;
-    color: var(--muted);
-    margin-bottom: 1.2rem;
-    line-height: 1.8;
-  }
-  .about-text p strong { color: var(--ink); font-weight: 500; }
-  .stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-  .stat-card {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    padding: 1.5rem;
-    border-radius: 2px;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .stat-card:hover { border-color: var(--accent2); transform: translateY(-2px); }
-  .stat-num {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.5rem;
-    color: var(--ink);
-    letter-spacing: -0.05em;
-    line-height: 1;
-  }
-  .stat-num sup { font-size: 1rem; color: var(--accent); }
-  .stat-desc {
-    font-size: 0.78rem;
-    color: var(--muted);
-    margin-top: 0.4rem;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-  }
+/* SECTION LAYOUT */
+.section{padding:5.5rem 3.5rem;}
+.kicker{
+  font-family:var(--mono);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:.6rem;margin-bottom:.85rem;
+}
+.kicker::before{content:'';width:1.5rem;height:1px;background:var(--gold);}
+.kicker.teal{color:var(--teal);}
+.kicker.teal::before{background:var(--teal);}
+.sec-title{
+  font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;
+  color:var(--text);line-height:1.1;margin-bottom:3rem;
+}
+.sec-title em{font-style:italic;color:var(--gold);}
+.sec-title.teal em{color:var(--teal);}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s var(--ease),transform .65s var(--ease);}
+.reveal.vis{opacity:1;transform:none;}
 
-  /* ─── EDUCATION & EXPERIENCE ─── */
-  .timeline { position: relative; padding-left: 2rem; }
-  .timeline::before {
-    content: '';
-    position: absolute; left: 0; top: 0.5rem; bottom: 0;
-    width: 1px; background: var(--line);
-  }
-  .timeline-item { position: relative; margin-bottom: 2.5rem; }
-  .timeline-item::before {
-    content: '';
-    position: absolute; left: -2rem; top: 0.5rem;
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--accent);
-    transform: translateX(-3px);
-  }
-  .timeline-period {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    color: var(--accent2);
-    margin-bottom: 0.3rem;
-  }
-  .timeline-role {
-    font-weight: 500;
-    font-size: 1rem;
-    color: var(--ink);
-    margin-bottom: 0.2rem;
-  }
-  .timeline-inst {
-    font-size: 0.85rem;
-    color: var(--muted);
-  }
+/* ABOUT */
+#about{background:var(--bg2);border-top:1px solid var(--line);}
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:5rem;align-items:start;}
+.about-text p{font-size:.96rem;color:var(--text2);margin-bottom:1.1rem;line-height:1.85;}
+.about-text strong{color:var(--text);font-weight:500;}
+.about-text a{color:var(--gold);text-decoration:underline;text-underline-offset:3px;}
+.tl{position:relative;padding-left:1.5rem;margin-top:2.5rem;}
+.tl::before{content:'';position:absolute;left:0;top:.5rem;bottom:0;width:1px;background:var(--line2);}
+.tl-item{position:relative;margin-bottom:1.8rem;}
+.tl-item::before{content:'';position:absolute;left:-1.5rem;top:.6rem;width:5px;height:5px;border-radius:50%;background:var(--gold);transform:translateX(-2px);}
+.tl-yr{font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;color:var(--teal);margin-bottom:.2rem;}
+.tl-role{font-weight:500;font-size:.92rem;color:var(--text);}
+.tl-inst{font-size:.8rem;color:var(--text3);margin-top:.1rem;}
 
-  /* ─── PUBLICATIONS ─── */
-  .pubs-list { display: flex; flex-direction: column; gap: 1.5rem; }
-  .pub-card {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-left: 3px solid transparent;
-    padding: 1.5rem 1.75rem;
-    border-radius: 0 2px 2px 0;
-    transition: border-left-color 0.2s, transform 0.2s;
-    cursor: default;
-  }
-  .pub-card:hover { border-left-color: var(--accent); transform: translateX(4px); }
-  .pub-card.featured { border-left-color: var(--accent2); background: var(--card); }
-  .pub-badge {
-    display: inline-flex; align-items: center; gap: 0.3rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.08em;
-    padding: 0.2rem 0.6rem;
-    border-radius: 2px;
-    margin-bottom: 0.75rem;
-    background: var(--accent2);
-    color: white;
-  }
-  .pub-badge.conf { background: var(--muted); }
-  .pub-title {
-    font-weight: 500;
-    font-size: 0.95rem;
-    color: var(--ink);
-    margin-bottom: 0.4rem;
-    line-height: 1.5;
-  }
-  .pub-authors {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-bottom: 0.3rem;
-  }
-  .pub-authors strong { color: var(--accent); font-weight: 500; }
-  .pub-venue {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--accent2);
-  }
+/* RESEARCH AREAS — paragraph-based cards */
+#research{background:var(--bg3);}
+.research-overview{font-size:.96rem;color:var(--text2);line-height:1.85;max-width:72rem;margin-bottom:3.5rem;}
+.research-cats{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.rcat{
+  border:1px solid var(--line2);padding:2rem;background:var(--surface);
+  cursor:pointer;transition:all .22s var(--ease);position:relative;overflow:hidden;
+}
+.rcat::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--gold);transform:scaleY(0);transform-origin:top;transition:transform .3s;
+}
+.rcat:hover{background:var(--surface2);border-color:var(--gold);}
+.rcat:hover::before{transform:scaleY(1);}
+.rcat-num{font-family:var(--mono);font-size:.54rem;color:var(--text3);margin-bottom:.8rem;letter-spacing:.1em;}
+.rcat-title{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--gold2);margin-bottom:.7rem;line-height:1.25;}
+.rcat-excerpt{font-size:.84rem;color:var(--text2);line-height:1.75;margin-bottom:1rem;}
+.rcat-tags{display:flex;flex-wrap:wrap;gap:.35rem;}
+.rcat-tag{font-family:var(--mono);font-size:.5rem;letter-spacing:.07em;padding:.15rem .5rem;border:1px solid var(--line2);color:var(--text3);}
+.rcat-arrow{
+  position:absolute;bottom:1.5rem;right:1.5rem;
+  font-family:var(--mono);font-size:.56rem;color:var(--gold);opacity:0;transition:opacity .2s;
+}
+.rcat:hover .rcat-arrow{opacity:1;}
 
-  /* ─── PRESENTATIONS ─── */
-  .talks-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-  .talk-card {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    padding: 1.5rem;
-    border-radius: 2px;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .talk-card:hover { border-color: var(--ink); transform: translateY(-2px); }
-  .talk-date {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    margin-bottom: 0.5rem;
-  }
-  .talk-title {
-    font-weight: 500;
-    font-size: 0.9rem;
-    color: var(--ink);
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
-  }
-  .talk-venue {
-    font-size: 0.78rem;
-    color: var(--muted);
-  }
-  .talk-invited {
-    display: inline-block;
-    margin-top: 0.5rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    padding: 0.15rem 0.5rem;
-    background: rgba(184,76,0,0.1);
-    color: var(--accent);
-    border-radius: 2px;
-    text-transform: uppercase;
-  }
+/* PUBLICATIONS */
+#publications{background:var(--bg2);}
+.pub-filter{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem;}
+.pf-btn{
+  font-family:var(--mono);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.28rem .7rem;border:1px solid var(--line2);background:none;
+  color:var(--text3);cursor:pointer;transition:all .18s;
+}
+.pf-btn:hover,.pf-btn.on{background:var(--gold);border-color:var(--gold);color:var(--bg);}
+.pub-list{display:flex;flex-direction:column;gap:0;}
+.pub-card{
+  border-bottom:1px solid var(--line);padding:1.6rem 1.6rem 1.6rem 2rem;
+  position:relative;transition:background .2s;
+}
+.pub-card:first-child{border-top:1px solid var(--line);}
+.pub-card:hover{background:var(--surface);}
+.pub-stripe{
+  position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:transparent;transition:background .2s;
+}
+.pub-card:hover .pub-stripe{background:var(--gold);}
+.pub-card.lead .pub-stripe{background:var(--teal);}
+.pub-badge{
+  display:inline-flex;align-items:center;gap:.25rem;
+  font-family:var(--mono);font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:.14rem .5rem;margin-bottom:.55rem;
+  background:var(--surface2);color:var(--text3);border:1px solid var(--line2);
+}
+.pub-badge.j{border-color:var(--teal);color:var(--teal);}
+.pub-badge.lead-b{border-color:var(--gold);color:var(--gold);}
+.pub-yr{position:absolute;top:1.6rem;right:1.6rem;font-family:var(--mono);font-size:.5rem;color:var(--text3);}
+.pub-title{font-weight:500;font-size:.92rem;color:var(--text);margin-bottom:.35rem;line-height:1.55;padding-right:3rem;}
+.pub-title a{transition:color .2s;}
+.pub-title a:hover{color:var(--gold);}
+.pub-authors{font-size:.78rem;color:var(--text3);margin-bottom:.28rem;line-height:1.6;}
+.pub-authors strong{color:var(--rust);}
+.pub-venue{font-family:var(--mono);font-size:.62rem;color:var(--teal);}
+.pub-venue a{transition:color .2s;}
+.pub-venue a:hover{color:var(--gold);}
 
-  /* ─── KEYWORDS ─── */
-  .keywords-wrap {
-    display: flex; flex-wrap: wrap; gap: 0.75rem;
-    max-width: 700px;
-  }
-  .kw-pill {
-    padding: 0.5rem 1.25rem;
-    border: 1px solid var(--line);
-    border-radius: 100px;
-    font-size: 0.82rem;
-    color: var(--ink);
-    background: var(--card);
-    transition: background 0.2s, border-color 0.2s, color 0.2s;
-  }
-  .kw-pill:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+/* PRESENTATIONS */
+#presentations{background:var(--bg3);}
+.pres-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);}
+.pres-card{
+  background:var(--bg3);padding:1.5rem;
+  transition:background .2s;
+}
+.pres-card:hover{background:var(--surface);}
+.pres-date{font-family:var(--mono);font-size:.56rem;color:var(--gold);letter-spacing:.08em;margin-bottom:.5rem;}
+.pres-title{font-size:.85rem;font-weight:500;color:var(--text);margin-bottom:.4rem;line-height:1.45;}
+.pres-venue{font-size:.76rem;color:var(--text3);line-height:1.55;}
+.pres-inv{
+  display:inline-block;margin-top:.5rem;
+  font-family:var(--mono);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.13rem .45rem;border:1px solid var(--gold);color:var(--gold);
+}
 
-  /* ─── CONTACT ─── */
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-  }
-  .contact-info { display: flex; flex-direction: column; gap: 1.25rem; }
-  .contact-item { display: flex; align-items: flex-start; gap: 1rem; }
-  .contact-icon {
-    width: 36px; height: 36px;
-    background: var(--tag-bg);
-    border-radius: 2px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    font-size: 1rem;
-  }
-  .contact-detail { display: flex; flex-direction: column; }
-  .contact-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 0.15rem;
-  }
-  .contact-value {
-    font-size: 0.9rem;
-    color: var(--ink);
-    font-weight: 400;
-  }
-  .contact-value a { color: var(--accent2); text-decoration: none; }
-  .contact-value a:hover { text-decoration: underline; }
-  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
-  .ext-link {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1rem 1.5rem;
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    text-decoration: none;
-    color: var(--ink);
-    font-size: 0.88rem;
-    font-weight: 500;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .ext-link:hover { border-color: var(--accent2); background: rgba(46,95,163,0.04); }
-  .ext-link span { color: var(--muted); font-size: 0.8rem; }
+/* SERVICE / PEER REVIEW */
+#service{background:var(--bg2);}
+.service-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.service-block{background:var(--surface);border:1px solid var(--line2);padding:1.5rem;}
+.service-head{font-family:var(--serif);font-size:1.1rem;color:var(--gold2);margin-bottom:1rem;}
+.journal-list{display:flex;flex-direction:column;gap:.55rem;}
+.journal-item{
+  display:flex;align-items:center;gap:.7rem;
+  font-size:.82rem;color:var(--text2);
+  padding:.5rem 0;border-bottom:1px solid var(--line);
+}
+.journal-item:last-child{border-bottom:none;}
+.j-dot{width:4px;height:4px;border-radius:50%;background:var(--teal);flex-shrink:0;}
+.journal-item a{color:var(--teal);text-decoration:underline;text-underline-offset:2px;}
+.journal-item a:hover{color:var(--gold);}
+.media-grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1.5rem;}
+.media-card2{
+  background:var(--surface);border:1px solid var(--line2);border-left:2px solid var(--gold);
+  padding:1.2rem;transition:background .2s;
+}
+.media-card2:hover{background:var(--surface2);}
+.media-type2{font-family:var(--mono);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.35rem;}
+.media-title2{font-size:.85rem;font-weight:500;color:var(--text);margin-bottom:.3rem;line-height:1.4;}
+.media-title2 a:hover{color:var(--gold);}
+.media-date2{font-family:var(--mono);font-size:.54rem;color:var(--text3);}
 
-  /* ─── FOOTER ─── */
-  footer {
-    padding: 2rem clamp(1.5rem, 8vw, 8rem);
-    border-top: 1px solid var(--line);
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 1rem;
-  }
-  footer p { font-size: 0.78rem; color: var(--muted); }
+/* CONTACT */
+#contact{background:var(--bg3);border-top:1px solid var(--line);}
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;}
+.contact-info-items{display:flex;flex-direction:column;gap:1.1rem;}
+.ci-item{display:flex;align-items:flex-start;gap:.9rem;}
+.ci-ico{
+  width:34px;height:34px;border:1px solid var(--line2);
+  display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;color:var(--gold);
+}
+.ci-label{font-family:var(--mono);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.1rem;}
+.ci-val{font-size:.86rem;color:var(--text2);}
+.ci-val a{color:var(--gold);text-decoration:underline;text-underline-offset:2px;}
+.ext-links-col{display:flex;flex-direction:column;gap:.7rem;margin-top:2rem;}
+.ext-link-btn{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.85rem 1.2rem;border:1px solid var(--line2);color:var(--text2);
+  font-size:.84rem;transition:all .2s;
+}
+.ext-link-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold3);}
+.ext-link-btn span{font-size:.76rem;color:var(--text3);}
 
-  /* ─── ANIMATIONS ─── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
+/* CONTACT FORM */
+.contact-form{background:var(--surface);border:1px solid var(--line2);padding:2rem;}
+.form-title{font-family:var(--serif);font-size:1.4rem;color:var(--gold2);margin-bottom:1.5rem;}
+.form-row{margin-bottom:1.1rem;}
+.form-row label{
+  display:block;font-family:var(--mono);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text3);margin-bottom:.45rem;
+}
+.form-row input,.form-row select,.form-row textarea{
+  width:100%;background:var(--bg);border:1px solid var(--line2);
+  color:var(--text);padding:.65rem .9rem;
+  font-family:var(--sans);font-size:.88rem;
+  transition:border-color .2s;outline:none;
+}
+.form-row input:focus,.form-row select:focus,.form-row textarea:focus{border-color:var(--gold);}
+.form-row select option{background:var(--bg2);}
+.form-row textarea{resize:vertical;min-height:110px;}
+.form-submit{
+  width:100%;background:var(--gold);color:var(--bg);
+  border:none;padding:.75rem 1.5rem;
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;
+  cursor:pointer;transition:all .2s;margin-top:.5rem;
+}
+.form-submit:hover{background:var(--gold2);}
+.form-msg{font-family:var(--mono);font-size:.58rem;margin-top:.75rem;padding:.6rem;display:none;}
+.form-msg.ok{background:var(--teal2);color:var(--teal);border:1px solid rgba(45,212,191,.2);}
+.form-msg.err{background:var(--rust2);color:var(--rust);border:1px solid rgba(224,122,95,.2);}
 
-  /* ─── REVEAL ON SCROLL ─── */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
+/* FOOTER */
+footer{
+  background:var(--bg2);border-top:1px solid var(--line);
+  padding:1.8rem 3.5rem;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+}
+footer p{font-family:var(--mono);font-size:.52rem;color:var(--text3);}
+.footer-links{display:flex;gap:1.2rem;}
+.footer-links a{font-family:var(--mono);font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);transition:color .18s;}
+.footer-links a:hover{color:var(--gold);}
 
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-right { display: none; }
-    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .nav-links { gap: 1.2rem; }
-  }
-  @media (max-width: 600px) {
-    .nav-links li:nth-child(n+4) { display: none; }
-    .stats-grid { grid-template-columns: 1fr 1fr; }
-  }
+/* MODAL / SUB-PAGE OVERLAY */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(10,13,18,.95);z-index:2000;
+  display:flex;flex-direction:column;overflow-y:auto;
+  opacity:0;pointer-events:none;transition:opacity .3s var(--ease);
+}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal-inner{
+  max-width:860px;width:100%;margin:0 auto;
+  padding:5rem 3rem 4rem;
+  transform:translateY(20px);transition:transform .3s var(--ease);
+}
+.modal-overlay.open .modal-inner{transform:none;}
+.modal-close{
+  position:fixed;top:1.5rem;right:2rem;
+  font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--text3);background:none;border:1px solid var(--line2);
+  padding:.3rem .7rem;cursor:pointer;transition:all .2s;z-index:2001;
+}
+.modal-close:hover{border-color:var(--gold);color:var(--gold);}
+.modal-kicker{font-family:var(--mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;display:flex;align-items:center;gap:.6rem;}
+.modal-kicker::before{content:'';width:1.5rem;height:1px;background:var(--gold);}
+.modal-title{font-family:var(--serif);font-size:clamp(1.8rem,4vw,3rem);font-weight:300;color:var(--text);margin-bottom:1.5rem;line-height:1.15;}
+.modal-body p{font-size:.95rem;color:var(--text2);line-height:1.9;margin-bottom:1rem;}
+.modal-body strong{color:var(--text);font-weight:500;}
+.modal-divider{height:1px;background:var(--line);margin:2rem 0;}
+.modal-sub{font-family:var(--serif);font-size:1.3rem;color:var(--gold2);margin-bottom:1rem;}
+.modal-pub-item{border-left:2px solid var(--teal);padding:.9rem 1.1rem;margin-bottom:.9rem;background:var(--surface);}
+.modal-pub-item:hover{background:var(--surface2);}
+.modal-pub-title{font-size:.88rem;font-weight:500;color:var(--text);margin-bottom:.3rem;line-height:1.45;}
+.modal-pub-title a:hover{color:var(--gold);}
+.modal-pub-meta{font-family:var(--mono);font-size:.58rem;color:var(--teal);}
+
+/* LANG PANEL */
+.lang-panel{
+  position:fixed;top:60px;right:1rem;z-index:850;
+  background:var(--bg2);border:1px solid var(--line2);padding:.75rem;
+  display:none;flex-direction:column;gap:.3rem;min-width:140px;
+}
+.lang-panel.open{display:flex;}
+.lang-option{
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text3);padding:.35rem .6rem;cursor:pointer;transition:all .18s;
+  background:none;border:none;text-align:left;
+}
+.lang-option:hover,.lang-option.active{color:var(--gold);background:var(--gold3);}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .about-grid,.contact-layout{grid-template-columns:1fr;gap:3rem;}
+  .research-cats{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+  nav{padding:0 1.2rem;}
+  .hero,.section{padding:4rem 1.2rem;}
+  .hero{padding:5rem 1.2rem 3rem;}
+  .pres-grid{grid-template-columns:1fr;}
+  .service-grid{grid-template-columns:1fr;}
+  .media-grid2{grid-template-columns:1fr;}
+  .nav-links li:nth-child(n+5){display:none;}
+  footer{padding:1.5rem 1.2rem;}
+}
+/* CLICKABLE RESEARCH PARAGRAPHS */
+.clickable-research{
+  cursor:pointer;
+  border-left:2px solid transparent;
+  padding-left:.8rem;
+  margin-left:-.8rem;
+  transition:border-color .2s,background .2s,padding-left .2s;
+  position:relative;
+  border-radius:0 2px 2px 0;
+}
+.clickable-research:hover{
+  border-left-color:var(--gold);
+  background:rgba(201,168,76,.06);
+  padding-left:1rem;
+}
+.clickable-research::after{
+  content:'Read more →';
+  display:block;
+  font-family:var(--mono);
+  font-size:.5rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--gold);
+  opacity:0;
+  margin-top:.25rem;
+  transition:opacity .2s;
+}
+.clickable-research:hover::after{opacity:1;}
 </style>
 </head>
 <body>
 
+<div id="progress"></div>
+
+<!-- LANGUAGE PANEL -->
+<div class="lang-panel" id="langPanel">
+  <button class="lang-option active" onclick="setLang('en',this)">English</button>
+  <button class="lang-option" onclick="setLang('ja',this)">日本語</button>
+  <button class="lang-option" onclick="setLang('de',this)">Deutsch</button>
+  <button class="lang-option" onclick="setLang('fr',this)">Français</button>
+  <button class="lang-option" onclick="setLang('ar',this)">العربية</button>
+  <button class="lang-option" onclick="setLang('fa',this)">دری / فارسی</button>
+  <button class="lang-option" onclick="setLang('zh',this)">中文</button>
+  <button class="lang-option" onclick="setLang('ko',this)">한국어</button>
+</div>
+
 <!-- NAV -->
-<nav>
-  <a href="#" class="nav-brand">M. Mutahari</a>
+<nav id="nav">
+  <a href="#home" class="nav-brand">
+    <div class="nav-mark"><span>M</span></div>
+    <div>
+      <div class="nav-brand-name">Dr. Mustafa Mutahari</div>
+      <span class="nav-brand-sub">Urban &amp; Transportation Systems · TUT, Japan</span>
+    </div>
+  </a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#publications">Publications</a></li>
-    <li><a href="#presentations">Talks</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about" data-i18n="nav_about">About</a></li>
+    <li><a href="#research" data-i18n="nav_research">Research</a></li>
+    <li><a href="#publications" data-i18n="nav_pubs">Publications</a></li>
+    <li><a href="#presentations" data-i18n="nav_talks">Talks</a></li>
+    <li><div class="nav-sep"></div></li>
+    <li><a href="#service" data-i18n="nav_service">Service</a></li>
+    <li><button class="lang-btn" onclick="toggleLangPanel()" title="Change language">🌐 EN</button></li>
+    <li><a href="#contact" class="nav-cta" data-i18n="nav_contact">Contact</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-grid-bg"></div>
-  <div class="hero-left">
-    <p class="hero-eyebrow">Research Fellow · Toyohashi University of Technology</p>
-    <h1 class="hero-name">Mustafa<br/><span>Mutahari</span></h1>
-    <p class="hero-title">PhD in Engineering — Architecture &amp; Civil Engineering, specializing in Urban and Transportation Systems.</p>
-    <div class="hero-tags">
-      <span class="tag">Urban Microsimulation</span>
-      <span class="tag">Land Use–Transport Models</span>
-      <span class="tag">Transport Planning</span>
-      <span class="tag">Smart Cities</span>
-      <span class="tag">Evacuation Simulation</span>
-      <span class="tag">Regional Planning</span>
+<!-- ══════════════ HERO ══════════════ -->
+<section id="home" class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">PhD · Urban &amp; Transportation Systems · Toyohashi University of Technology</div>
+    <h1 class="hero-name">Mustafa<em>Mutahari</em></h1>
+    <p class="hero-role">
+      Dr. Mustafa Mutahari is a researcher specializing in integrated evaluation frameworks for sustainable urban and transportation systems — bridging physical and digital accessibility to improve quality of life, advance decarbonization, and address the challenges of aging societies.
+    </p>
+    <div class="interest-chips">
+      <div class="int-chip" onclick="openModal('modal-luti')"><span>Land Use–Transport Models</span></div>
+      <div class="int-chip" onclick="openModal('modal-micro')"><span>Urban Microsimulation</span></div>
+      <div class="int-chip" onclick="openModal('modal-qolqob')"><span>QOL / QOB Evaluation</span></div>
+      <div class="int-chip" onclick="openModal('modal-smart')"><span>Smart Cities</span></div>
+      <div class="int-chip" onclick="openModal('modal-evac')"><span>Evacuation Simulation</span></div>
+      <div class="int-chip" onclick="openModal('modal-digital')"><span>Digital Accessibility</span></div>
     </div>
     <div class="hero-actions">
-      <a href="#publications" class="btn-primary">View Publications →</a>
-      <a href="https://researchmap.jp/mustafa-mutahari" target="_blank" class="btn-ghost">Researchmap ↗</a>
+      <a href="#publications" class="btn-gold">View Publications →</a>
+      <a href="https://researchmap.jp/mustafa-mutahari?lang=en" target="_blank" class="btn-outline">Researchmap ↗</a>
+      <a href="https://orcid.org/0000-0003-3295-1567" target="_blank" class="btn-outline">ORCID ↗</a>
     </div>
   </div>
-  <div class="hero-right">
-    <div class="profile-frame">
-      <div class="profile-placeholder">
-        <div class="profile-initials">MM</div>
-      </div>
-    </div>
-    <div class="profile-meta">
-      <p class="inst">豊橋技術科学大学 · TUT, Japan</p>
-      <a href="https://orcid.org/0000-0003-3295-1567" target="_blank" class="orcid">ORCID: 0000-0003-3295-1567</a>
-    </div>
-  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div>Scroll to explore</div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <p class="section-label reveal">Background</p>
-  <h2 class="section-heading reveal">Researcher in Urban &amp; Transportation Systems</h2>
+<!-- ══════════════ ABOUT ══════════════ -->
+<section id="about" class="section">
+  <div class="kicker reveal" data-i18n-k="s_about">01 — Background</div>
+  <h2 class="sec-title reveal">Researcher in Urban &amp; <em>Transportation Systems</em></h2>
   <div class="about-grid">
     <div class="about-text reveal">
-      <p>I am a <strong>Research Fellow</strong> at the Graduate School of Engineering, Department of Architecture and Civil Engineering (Urban and Transportation Systems), Toyohashi University of Technology (TUT), Japan.</p>
-      <p>My research focuses on developing <strong>integrated land use–transport models</strong>, urban microsimulation frameworks, and accessibility-based evaluation methods to support evidence-based urban and transportation policy.</p>
-      <p>Current work includes <strong>Quality of Life (QOL) and Quality of Business (QOB)</strong> evaluation for air-front smart cities, digital service substitution in urban contexts, and multi-layer social network simulation.</p>
-
-      <div style="margin-top:2.5rem;">
-        <p class="section-label" style="margin-bottom:1rem;">Education</p>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-period">2023 – 2026</div>
-            <div class="timeline-role">Doctor of Engineering (PhD)</div>
-            <div class="timeline-inst">Toyohashi University of Technology — Architecture &amp; Civil Engineering</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-period">2020 – 2022</div>
-            <div class="timeline-role">Master of Engineering</div>
-            <div class="timeline-inst">Toyohashi University of Technology — Architecture &amp; Civil Engineering</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-period">2010 – 2015</div>
-            <div class="timeline-role">Bachelor of Engineering (Civil)</div>
-            <div class="timeline-inst">National Institute of Technology Warangal (NITW), India</div>
-          </div>
-        </div>
+      <p>Dr. Mustafa Mutahari is a researcher at the Graduate School of Engineering, Department of Architecture and Civil Engineering (Urban and Transportation Systems), <a href="https://www.tut.ac.jp/english/" target="_blank">Toyohashi University of Technology (TUT)</a>, Japan, where he earned his PhD in Engineering in March 2026.</p>
+      <p>Dr. Mutahari's research focuses on developing <strong>integrated land use–transport models</strong>, urban microsimulation frameworks, digital services, and accessibility-based evaluation methods for evidence-based urban and transportation policy.</p>
+      <p class="clickable-research" onclick="openModal('modal-current-research-1')" title="Click to read more">Dr. Mutahari's current research develops multi-layer urban simulation models and social dynamic simulations to evaluate how digital services can substitute or complement physical activities, enhancing quality of life, reducing infrastructure costs, and addressing service supply challenges in aging and population-declining societies, while also investigating negative impacts such as social isolation and reduced face-to-face communication.</p>
+      <p class="clickable-research" onclick="openModal('modal-current-research-2')" title="Click to read more">His research further explores digital accessibility and digital services as low-cost alternative solutions in developing countries to reduce traffic congestion, lower CO2 emissions, and expand business opportunities where physical infrastructure remains limited.</p>
+      <p class="clickable-research" onclick="openModal('modal-current-research-3')" title="Click to read more">He also investigates barriers to digital service adoption, including ICT skill gaps, security concerns, and trust in online transactions, which act as latent friction multipliers that risk deepening the digital divide, particularly among elderly and vulnerable populations.</p>
+      <p>Before joining academia, Dr. Mutahari served as <strong>Head of the Transportation Planning Department, Kabul Municipality</strong> (2018–2020), leading urban transport strategy for a city of over 5 million residents and collaborating with the World Bank (KUTEI project) and JICA.</p>
+      <div class="kicker teal" style="margin-top:2.5rem;margin-bottom:.8rem;">Education</div>
+      <div class="tl">
+        <div class="tl-item"><div class="tl-yr">Apr 2023 – Mar 2026</div><div class="tl-role">Doctor of Engineering (PhD)</div><div class="tl-inst">Architecture &amp; Civil Engineering · Toyohashi University of Technology</div></div>
+        <div class="tl-item"><div class="tl-yr">Oct 2020 – Sep 2022</div><div class="tl-role">Master of Engineering</div><div class="tl-inst">Architecture &amp; Civil Engineering · Toyohashi University of Technology</div></div>
+        <div class="tl-item"><div class="tl-yr">Jul 2010 – Apr 2015</div><div class="tl-role">B.Tech in Civil Engineering</div><div class="tl-inst">National Institute of Technology Warangal (NITW), India</div></div>
       </div>
     </div>
-
     <div class="reveal">
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-num">15</div>
-          <div class="stat-desc">Peer-reviewed publications</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">15</div>
-          <div class="stat-desc">Conference presentations</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">3<sup>×</sup></div>
-          <div class="stat-desc">Invited speaker</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">6</div>
-          <div class="stat-desc">Research keywords</div>
-        </div>
+      <div class="kicker teal" style="margin-bottom:1.2rem;">Research Interests (click to explore)</div>
+      <div style="display:flex;flex-direction:column;gap:.6rem;">
+        <div class="int-chip" style="display:block;padding:.7rem 1rem;" onclick="openModal('modal-luti')"><span>Land-use and Transportation Model</span></div>
+        <div class="int-chip" style="display:block;padding:.7rem 1rem;" onclick="openModal('modal-micro')"><span>Microsimulation</span></div>
+        <div class="int-chip" style="display:block;padding:.7rem 1rem;" onclick="openModal('modal-qolqob')"><span>QOL / QOB Evaluation</span></div>
+        <div class="int-chip" style="display:block;padding:.7rem 1rem;" onclick="openModal('modal-smart')"><span>Smart Cities &amp; Air-Front Development</span></div>
+        <div class="int-chip" style="display:block;padding:.7rem 1rem;" onclick="openModal('modal-evac')"><span>Evacuation Simulation &amp; Disaster Resilience</span></div>
+        <div class="int-chip" style="display:block;padding:.7rem 1rem;" onclick="openModal('modal-digital')"><span>Digital Accessibility &amp; Substitution</span></div>
       </div>
-
-      <div style="margin-top:2rem;">
-        <p class="section-label" style="margin-bottom:1rem;">Research Keywords</p>
-        <div class="keywords-wrap">
-          <span class="kw-pill">Land Use–Transport Model</span>
-          <span class="kw-pill">Microsimulation</span>
-          <span class="kw-pill">Transport Planning</span>
-          <span class="kw-pill">Urban Planning</span>
-          <span class="kw-pill">Regional Planning</span>
-          <span class="kw-pill">Evacuation Simulation</span>
+      <div style="margin-top:2rem;padding:1.5rem;background:var(--surface);border:1px solid var(--line2);">
+        <div class="kicker teal" style="margin-bottom:.8rem;">External Profiles</div>
+        <div style="display:flex;flex-direction:column;gap:.5rem;">
+          <a href="https://researchmap.jp/mustafa-mutahari?lang=en" target="_blank" style="font-size:.82rem;color:var(--teal);">→ Researchmap</a>
+          <a href="https://orcid.org/0000-0003-3295-1567" target="_blank" style="font-size:.82rem;color:var(--teal);">→ ORCID: 0000-0003-3295-1567</a>
+          <a href="https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=202601013641983289" target="_blank" style="font-size:.82rem;color:var(--teal);">→ J-GLOBAL: 202601013641983289</a>
+          <a href="https://sites.google.com/tr.ace.tut.ac.jp/home/en" target="_blank" style="font-size:.82rem;color:var(--teal);">→ TUT Lab Website</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PUBLICATIONS -->
-<section id="publications">
-  <p class="section-label reveal">Peer-reviewed Works</p>
-  <h2 class="section-heading reveal">Selected Publications</h2>
-  <div class="pubs-list">
+<!-- ══════════════ RESEARCH AREAS ══════════════ -->
+<section id="research" class="section">
+  <div class="kicker reveal">02 — Research Programme</div>
+  <h2 class="sec-title reveal">Research <em>Achievements</em></h2>
+  <p class="research-overview reveal">
+    Dr. Mutahari's research focuses on the development of quantitative evaluation frameworks for sustainable urban and transport systems, with particular emphasis on quality of life (QOL), quality of business (QOB), decarbonization (De-CO2), and the challenges posed by an aging society and population decline. Over the past five years, he has conducted an integrated body of research bridging advanced modelling techniques with real-world policy applications across Japan, Thailand, the Philippines, and Afghanistan. Click any category below to explore his research work and related publications in detail.
+  </p>
+  <div class="research-cats reveal">
 
-    <!-- Journal Papers (first-author/lead) -->
-    <div class="pub-card featured reveal">
-      <div class="pub-badge">Journal · 2026</div>
-      <div class="pub-title">Startup-Driven Air-Front Smart City Policy Evaluation Using Integrated Accessibility Index: A Case Study of Aichi, Singapore, and Munich</div>
+    <div class="rcat" onclick="openModal('modal-rcat1')">
+      <div class="rcat-num">01</div>
+      <div class="rcat-title">QOL &amp; Well-being Evaluation in Urban Transport Systems</div>
+      <p class="rcat-excerpt">Development of accessibility-based computational frameworks integrating physical transport networks and ICT infrastructure to produce holistic Quality of Life indices for urban residents, considering digital service substitutability and De-CO2 implications.</p>
+      <div class="rcat-tags">
+        <span class="rcat-tag">Accessibility Modelling</span>
+        <span class="rcat-tag">ICT Networks</span>
+        <span class="rcat-tag">De-CO2</span>
+        <span class="rcat-tag">Sustainability</span>
+      </div>
+      <div class="rcat-arrow">Read more →</div>
+    </div>
+
+    <div class="rcat" onclick="openModal('modal-rcat2')">
+      <div class="rcat-num">02</div>
+      <div class="rcat-title">Air-Front Smart City Evaluation: QOL, QOB &amp; De-CO2</div>
+      <p class="rcat-excerpt">As part of the JST e-ASIA Joint Research Program (2023–2026), Dr. Mutahari developed an integrated evaluation system assessing QOL for residents and QOB for enterprises simultaneously, applied to Aichi, Singapore, Munich, and Baguio.</p>
+      <div class="rcat-tags">
+        <span class="rcat-tag">JST e-ASIA</span>
+        <span class="rcat-tag">Smart Cities</span>
+        <span class="rcat-tag">Startup Ecosystems</span>
+        <span class="rcat-tag">International</span>
+      </div>
+      <div class="rcat-arrow">Read more →</div>
+    </div>
+
+    <div class="rcat" onclick="openModal('modal-rcat3')">
+      <div class="rcat-num">03</div>
+      <div class="rcat-title">Urban Microsimulation for Policy Evaluation in Aging Societies</div>
+      <p class="rcat-excerpt">Dr. Mutahari developed a multi-layer network urban microsimulation model that projects future QOL trajectories under alternative policy scenarios, accounting for population aging, household relocation, land price dynamics, and digital service diffusion.</p>
+      <div class="rcat-tags">
+        <span class="rcat-tag">Agent-Based Modelling</span>
+        <span class="rcat-tag">Multi-layer Networks</span>
+        <span class="rcat-tag">Aging Society</span>
+        <span class="rcat-tag">Policy Evaluation</span>
+      </div>
+      <div class="rcat-arrow">Read more →</div>
+    </div>
+
+    <div class="rcat" onclick="openModal('modal-rcat4')">
+      <div class="rcat-num">04</div>
+      <div class="rcat-title">Disaster Resilience &amp; Accessibility</div>
+      <p class="rcat-excerpt">Dr. Mutahari's research addresses transport system resilience under compound disaster risk — including large-scale evacuation behaviour modelling and spatial accessibility analysis for emergency water reserves during earthquake scenarios.</p>
+      <div class="rcat-tags">
+        <span class="rcat-tag">Evacuation Modelling</span>
+        <span class="rcat-tag">GIS</span>
+        <span class="rcat-tag">COVID-19</span>
+        <span class="rcat-tag">Emergency Preparedness</span>
+      </div>
+      <div class="rcat-arrow">Read more →</div>
+    </div>
+
+    <div class="rcat" onclick="openModal('modal-rcat5')" style="grid-column:1/-1;">
+      <div class="rcat-num">05</div>
+      <div class="rcat-title">Real-World Collaboration &amp; Policy Impact — Kabul &amp; Beyond</div>
+      <p class="rcat-excerpt">Grounded in applied work with governments, Dr. Mutahari led urban transport strategy for Kabul (5M+ residents) before his academic career. His research recommendations have directly resulted in infrastructure implementation in Kabul City, and his applied orientation continues through JST e-ASIA collaboration and invited presentations at leading international venues.</p>
+      <div class="rcat-tags">
+        <span class="rcat-tag">World Bank (KUTEI)</span>
+        <span class="rcat-tag">JICA</span>
+        <span class="rcat-tag">Kabul Municipality</span>
+        <span class="rcat-tag">Infrastructure Implementation</span>
+      </div>
+      <div class="rcat-arrow">Read more →</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ PUBLICATIONS ══════════════ -->
+<section id="publications" class="section">
+  <div class="kicker reveal">03 — Scholarly Work</div>
+  <h2 class="sec-title reveal">Peer-reviewed <em>Publications</em></h2>
+  <div class="pub-filter reveal">
+    <span style="font-family:var(--mono);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);align-self:center;margin-right:.3rem;">Filter:</span>
+    <button class="pf-btn on" onclick="filterPub('all',this)">All (15)</button>
+    <button class="pf-btn" onclick="filterPub('journal',this)">Journals</button>
+    <button class="pf-btn" onclick="filterPub('conf',this)">Proceedings</button>
+    <button class="pf-btn" onclick="filterPub('lead',this)">First Author</button>
+  </div>
+  <div class="pub-list" id="pub-list">
+
+    <!-- 1 -->
+    <div class="pub-card lead reveal" data-type="journal lead">
+      <div class="pub-stripe"></div>
+      <div class="pub-yr">2026</div>
+      <span class="pub-badge j">Journal</span> <span class="pub-badge lead-b">Lead · Corresponding</span>
+      <div class="pub-title"><a href="https://doi.org/10.3390/smartcities9040057" target="_blank">Startup-Driven Air-Front Smart City Policy Evaluation Using Integrated Accessibility Index: A Case Study of Aichi, Singapore, and Munich</a></div>
       <div class="pub-authors"><strong>Mustafa Mutahari</strong>, Nao Sugiki, Tsuyoshi Takano, Hiroyoshi Morita, Yoshitsugu Hayashi, Kojiro Matsuo</div>
-      <div class="pub-venue">Smart Cities, 9(57) · 2026 · Peer-reviewed · First Author</div>
+      <div class="pub-venue"><a href="https://doi.org/10.3390/smartcities9040057" target="_blank">Smart Cities, 9(4), 57 · doi:10.3390/smartcities9040057</a></div>
     </div>
 
-    <div class="pub-card featured reveal">
-      <div class="pub-badge">Journal · 2026</div>
-      <div class="pub-title">Revitalizing Regional Industries and Advancing a Regenerative Economy: Case Studies from Three Countries on the Application of Digital Transformation Technologies</div>
-      <div class="pub-authors">Masanobu Kii, Marla C. Maniquiz-Redillas, Pawinee Iamtrakul, <strong>Mustafa Mutahari</strong>, Ronnie Concepcion II, et al.</div>
-      <div class="pub-venue">Sustainability, 18(6) · March 2026 · Peer-reviewed</div>
+    <!-- 2 -->
+    <div class="pub-card reveal" data-type="journal">
+      <div class="pub-stripe"></div>
+      <div class="pub-yr">2026</div>
+      <span class="pub-badge j">Journal</span>
+      <div class="pub-title"><a href="https://doi.org/10.3390/su18062979" target="_blank">Revitalizing Regional Industries and Advancing a Regenerative Economy: Case Studies from Three Countries on the Application of Digital Transformation Technologies</a></div>
+      <div class="pub-authors">Masanobu Kii, Marla C. Maniquiz-Redillas, Pawinee Iamtrakul, <strong>Mustafa Mutahari</strong>, Ronnie Concepcion II, Pornnapas Khemthong, Nao Sugiki, Yoshitsugu Hayashi</div>
+      <div class="pub-venue"><a href="https://doi.org/10.3390/su18062979" target="_blank">Sustainability, 18(6) · March 2026 · doi:10.3390/su18062979</a></div>
     </div>
 
-    <div class="pub-card featured reveal">
-      <div class="pub-badge">Journal · 2025</div>
-      <div class="pub-title">A Computational Framework for Evaluating Quality of Life in Sustainable Urban Environments: Integrating Physical and Digital Service Accessibility</div>
+    <!-- 3 -->
+    <div class="pub-card lead reveal" data-type="journal lead">
+      <div class="pub-stripe"></div>
+      <div class="pub-yr">2025</div>
+      <span class="pub-badge j">Journal</span> <span class="pub-badge lead-b">Lead · Corresponding</span>
+      <div class="pub-title"><a href="https://doi.org/10.3390/su17219660" target="_blank">A Computational Framework for Evaluating Quality of Life in Sustainable Urban Environments: Integrating Physical and Digital Service Accessibility</a></div>
       <div class="pub-authors"><strong>Mustafa Mutahari</strong>, Nao Sugiki, Daiki Suzuki, Yoshitsugu Hayashi, Kojiro Matsuo</div>
-      <div class="pub-venue">Sustainability, 17(21) · October 2025 · Peer-reviewed · First Author</div>
+      <div class="pub-venue"><a href="https://doi.org/10.3390/su17219660" target="_blank">Sustainability, 17(21) · October 2025 · doi:10.3390/su17219660</a></div>
     </div>
 
-    <div class="pub-card featured reveal">
-      <div class="pub-badge">Journal · 2025</div>
-      <div class="pub-title">Digital Service Substitution and Social Networks: Implications for Sustainable Urban Development</div>
-      <div class="pub-authors"><strong>Mustafa Mutahari</strong>, Daiki Suzuki, Nao Sugiki, Kojiro Matsuo</div>
-      <div class="pub-venue">Sustainability, 17(11) · June 2025 · Peer-reviewed · First Author</div>
-    </div>
-
-    <div class="pub-card reveal">
-      <div class="pub-badge">Journal · 2025</div>
-      <div class="pub-title">Holistic Evaluation Framework for Airport Smart Cities: Integration of QOL and QOB via Accessibility Modelling</div>
-      <div class="pub-authors"><strong>Mustafa Mutahari</strong>, Nao Sugiki, Giolo Rei Mababangloob, Ronnie Concepcion II, Marla Maniquiz-Redillas, Yoshitsugu Hayashi, Kojiro Matsuo</div>
-      <div class="pub-venue">Journal of the Eastern Asia Society for Transportation Studies, 16(PP3934) · January 2025 · Peer-reviewed · First Author</div>
-    </div>
-
-    <div class="pub-card reveal">
-      <div class="pub-badge conf">Conference · 2025</div>
-      <div class="pub-title">Assessing Water Shortages and Spatial Accessibility in Large-Scale Earthquakes: A Supply-Demand Analysis for Emergency Preparedness</div>
+    <!-- 4 -->
+    <div class="pub-card reveal" data-type="journal conf">
+      <div class="pub-stripe"></div>
+      <div class="pub-yr">2025</div>
+      <span class="pub-badge j">Journal · Proceedings</span>
+      <div class="pub-title"><a href="https://easts.info/on-line/proceedings/vol.15/pdf/F_PP4001.pdf" target="_blank">Assessing Water Shortages and Spatial Accessibility in Large-Scale Earthquakes: A Supply-Demand Analysis for Emergency Preparedness</a></div>
       <div class="pub-authors">Azuki Suehiro, <strong>Mustafa Mutahari</strong>, Nao Sugiki, Kojiro Matsuo</div>
-      <div class="pub-venue">Proceedings of EASTS, Vol. 17 · September 2025 · Peer-reviewed</div>
+      <div class="pub-venue"><a href="https://easts.info/on-line/proceedings/vol.15/pdf/F_PP4001.pdf" target="_blank">Proceedings of the Eastern Asia Society for Transportation Studies, Vol. 17, pp. 1–20 · September 2025</a></div>
     </div>
 
-    <div class="pub-card reveal">
-      <div class="pub-badge conf">Conference · 2025</div>
+    <!-- 5 -->
+    <div class="pub-card lead reveal" data-type="journal lead">
+      <div class="pub-stripe"></div>
+      <div class="pub-yr">2025</div>
+      <span class="pub-badge j">Journal</span> <span class="pub-badge lead-b">Lead · Corresponding</span>
+      <div class="pub-title"><a href="https://doi.org/10.3390/su17115185" target="_blank">Digital Service Substitution and Social Networks: Implications for Sustainable Urban Development</a></div>
+      <div class="pub-authors"><strong>Mustafa Mutahari</strong>, Daiki Suzuki, Nao Sugiki, Kojiro Matsuo</div>
+      <div class="pub-venue"><a href="https://doi.org/10.3390/su17115185" target="_blank">Sustainability, 17(11), 5185 · June 2025 · doi:10.3390/su17115185</a></div>
+    </div>
+
+    <!-- 6 -->
+    <div class="pub-card lead reveal" data-type="conf lead">
+      <div class="pub-stripe"></div>
+      <div class="pub-yr">2025</div>
+      <span class="pub-badge">Proceedings</span> <span class="pub-badge lead-b">Lead · Corresponding</span>
       <div class="pub-title">Developing Quality of Business (QOB) Evaluation Model for Air-front Smart Cities</div>
       <div class="pub-authors"><strong>Mustafa Mutahari</strong>, Nao Sugiki, Yoshitsugu Hayashi, Tsuyoshi Takano, Hiroyoshi Morita, Kojiro Matsuo</div>
-      <div class="pub-venue">14th Int. Symposium on City Planning &amp; Environmental Management in Asian Countries · January 2025 · First Author</div>
+      <div class="pub-venue">14th International Symposium on City Planning and Environmental Management in Asian Countries (AURG2025), pp. 605–612 · January 2025</div>
     </div>
 
-    <div class="pub-card reveal">
-      <div class="pub-badge conf">Conference · 2024</div>
+    <!-- 7 -->
+    <div class="pub-card reveal" data-type="conf">
+      <div class="pub-stripe"></div>
+      <div class="pub-yr">2025</div>
+      <span class="pub-badge">Proceedings</span>
+      <div class="pub-title">Assessing the Substitutability of Physical and Cyber Access to Services Considering Social Networks and its Impact on Residential Location Choice</div>
+      <div class="pub-authors">Daiki Suzuki, Nao Sugiki, <strong>Mustafa Mutahari</strong>, Kojiro Matsuo</div>
+      <div class="pub-venue">14th International Symposium on City Planning and Environmental Management in Asian Countries (AURG2025), pp. 33–39 · January 2025</div>
+    </div>
+
+    <!-- 8 -->
+    <div class="pub-card reveal" data-type="conf">
+      <div class="pub-stripe"></div>
+      <div class="pub-yr">2025</div>
+      <span class="pub-badge">Proceedings</span>
+      <div class="pub-title">Future Quality of Life (QOL) Projections and Urban Policy Evaluation Using Urban Microsimulation in Toyohashi City</div>
+      <div class="pub-authors">Yuta Okawa, Nao Sugiki, Tsuyoshi Takano, Hiroyoshi Morita, Yoshitsugu Hayashi, <strong>Mustafa Mutahari</strong>, Kojiro Matsuo</div>
+      <div class="pub-venue">14th International Symposium on City Planning and Environmental Management in Asian Countries (AURG2025), pp. 285–292 · January 2025</div>
+    </div>
+
+    <!-- 9 -->
+    <div class="pub-card lead reveal" data-type="journal lead">
+      <div class="pub-stripe"></div>
+      <div class="pub-yr">2025</div>
+      <span class="pub-badge j">Journal</span> <span class="pub-badge lead-b">Lead · Corresponding · Intl. Co-authored</span>
+      <div class="pub-title"><a href="https://www.jstage.jst.go.jp/article/easts/16/0/16_PP3934/_article" target="_blank">A Holistic Evaluation Framework for Air-Front Smart Cities: Integrating Quality of Life and Quality of Business via Accessibility Modeling</a></div>
+      <div class="pub-authors"><strong>Mustafa Mutahari</strong>, Nao Sugiki, Giolo Rei Mababangloob, Ronnie Concepcion II, Marla Maniquiz-Redillas, Yoshitsugu Hayashi, Kojiro Matsuo</div>
+      <div class="pub-venue"><a href="https://www.jstage.jst.go.jp/article/easts/16/0/16_PP3934/_article" target="_blank">Journal of the Eastern Asia Society for Transportation Studies, 16(PP3934) · January 2025</a></div>
+    </div>
+
+    <!-- 10 -->
+    <div class="pub-card lead reveal" data-type="conf lead">
+      <div class="pub-stripe"></div>
+      <div class="pub-yr">2024</div>
+      <span class="pub-badge">Proceedings</span> <span class="pub-badge lead-b">Lead · Corresponding</span>
       <div class="pub-title">Integrated Evaluation of Real and Virtual Networks</div>
       <div class="pub-authors"><strong>Mustafa Mutahari</strong>, Nao Sugiki, Daiki Suzuki, Yoshitsugu Hayashi, Kojiro Matsuo</div>
-      <div class="pub-venue">European Transport Conference 2024 · September 2024 · First Author</div>
+      <div class="pub-venue">Proceedings of the European Transport Conference 2024 · September 2024, Antwerp, Belgium</div>
     </div>
 
-    <div class="pub-card reveal">
-      <div class="pub-badge">Journal · 2023</div>
-      <div class="pub-title">Parameter Setting Examination of Social Dynamic Simulation Using a Multi-layer Network</div>
-      <div class="pub-authors"><strong>Mustafa Mutahari</strong></div>
-      <div class="pub-venue">Transportation Research Procedia, 82:3960–3979 · July 2023 · Peer-reviewed · First Author</div>
+    <!-- 11 -->
+    <div class="pub-card reveal" data-type="journal">
+      <div class="pub-stripe"></div>
+      <div class="pub-yr">2024</div>
+      <span class="pub-badge j">Journal</span>
+      <div class="pub-title"><a href="https://doi.org/10.11175/easts.15.102" target="_blank">Large-scale Disaster Evacuation Choice Behavior Modelling Under Compound Risk of Natural Disasters Amid COVID-19 Pandemic in Japan</a></div>
+      <div class="pub-authors">Taisei Noda, Nao Sugiki, <strong>Mustafa Mutahari</strong>, Kojiro Matsuo</div>
+      <div class="pub-venue"><a href="https://doi.org/10.11175/easts.15.102" target="_blank">Journal of the Eastern Asia Society for Transportation Studies, 15, pp. 102–121 · June 2024 · doi:10.11175/easts.15.102</a></div>
     </div>
 
-    <div class="pub-card reveal">
-      <div class="pub-badge">Journal · 2021</div>
-      <div class="pub-title">Social Dynamics Simulation Using a Multi-Layer Network</div>
+    <!-- 12 -->
+    <div class="pub-card reveal" data-type="conf">
+      <div class="pub-stripe"></div>
+      <div class="pub-yr">2023</div>
+      <span class="pub-badge">Proceedings</span>
+      <div class="pub-title">Future Policy Evaluation by Social Dynamics Simulation Using a Multi-layer Network</div>
+      <div class="pub-authors">Haruki Nakatani, Nao Sugiki, Fumitaka Kurauchi, <strong>Mustafa Mutahari</strong>, Kojiro Matsuo</div>
+      <div class="pub-venue">13th International Symposium on City Planning and Environment Management in Asian Countries (AURG2023) · October 2023</div>
+    </div>
+
+    <!-- 13 -->
+    <div class="pub-card reveal" data-type="conf">
+      <div class="pub-stripe"></div>
+      <div class="pub-yr">2023</div>
+      <span class="pub-badge">Proceedings</span>
+      <div class="pub-title">Evaluation of Location Optimization Plan Using Urban Microsimulation Model</div>
+      <div class="pub-authors">Toko Wada, Nao Sugiki, <strong>Mustafa Mutahari</strong>, Kojiro Matsuo</div>
+      <div class="pub-venue">13th International Symposium on City Planning and Environment Management in Asian Countries (AURG2023) · October 2023</div>
+    </div>
+
+    <!-- 14 -->
+    <div class="pub-card lead reveal" data-type="journal lead">
+      <div class="pub-stripe"></div>
+      <div class="pub-yr">2023</div>
+      <span class="pub-badge j">Journal</span> <span class="pub-badge lead-b">Lead · Corresponding</span>
+      <div class="pub-title"><a href="https://doi.org/10.1016/j.trpro.2024.12.002" target="_blank">Parameter Setting Examination of Social Dynamic Simulation Using a Multi-layer Network</a></div>
+      <div class="pub-authors"><strong>Mustafa Mutahari</strong>, Nao Sugiki, Fumitaka Kurauchi, Kojiro Matsuo</div>
+      <div class="pub-venue"><a href="https://doi.org/10.1016/j.trpro.2024.12.002" target="_blank">Transportation Research Procedia, 82, pp. 3960–3979 · July 2023 · doi:10.1016/j.trpro.2024.12.002</a></div>
+    </div>
+
+    <!-- 15 -->
+    <div class="pub-card reveal" data-type="journal">
+      <div class="pub-stripe"></div>
+      <div class="pub-yr">2021</div>
+      <span class="pub-badge j">Journal</span>
+      <div class="pub-title"><a href="https://doi.org/10.3390/su132413744" target="_blank">Social Dynamics Simulation Using a Multi-Layer Network</a></div>
       <div class="pub-authors">Nao Sugiki, Shogo Nagao, Fumitaka Kurauchi, <strong>Mustafa Mutahari</strong>, Kojiro Matsuo</div>
-      <div class="pub-venue">Sustainability, 13(24) · December 2021 · Peer-reviewed</div>
+      <div class="pub-venue"><a href="https://doi.org/10.3390/su132413744" target="_blank">Sustainability, 13(24), 13744 · December 2021 · doi:10.3390/su132413744</a></div>
     </div>
 
   </div>
 </section>
 
-<!-- PRESENTATIONS -->
-<section id="presentations">
-  <p class="section-label reveal">Talks &amp; Conferences</p>
-  <h2 class="section-heading reveal">Selected Presentations</h2>
-  <div class="talks-grid">
+<!-- ══════════════ PRESENTATIONS ══════════════ -->
+<section id="presentations" class="section">
+  <div class="kicker teal reveal">04 — Conferences &amp; Symposia</div>
+  <h2 class="sec-title teal reveal">Conference and Symposium <em>Presentations</em></h2>
+  <div class="pres-grid reveal">
 
-    <div class="talk-card reveal">
-      <div class="talk-date">Feb 2026</div>
-      <div class="talk-title">QOL/QOB Evaluation</div>
-      <div class="talk-venue">e-ASIA Research Symposium 2026</div>
-      <span class="talk-invited">Invited</span>
+    <div class="pres-card">
+      <div class="pres-date">Feb 5, 2026</div>
+      <div class="pres-title">QOL/QOB Evaluation</div>
+      <div class="pres-venue">e-ASIA Research Symposium 2026 · Nagoya, Japan</div>
+      <span class="pres-inv">Invited</span>
     </div>
 
-    <div class="talk-card reveal">
-      <div class="talk-date">Sep 2025</div>
-      <div class="talk-title">QOL and QOB Accessibility-Based Evaluation Method for Air-front Smart Cities: Startup and Post-Harvest Agriculture Cases</div>
-      <div class="talk-venue">16th EASTS International Conference, Indonesia</div>
+    <div class="pres-card">
+      <div class="pres-date">Nov 24, 2025</div>
+      <div class="pres-title">Integration of Real Space, Information Space, and Social Networks Using Multi-Layer Network Model</div>
+      <div class="pres-venue">72nd Annual Conference of Infrastructure Planning · Okayama, Japan</div>
     </div>
 
-    <div class="talk-card reveal">
-      <div class="talk-date">Jan 2025</div>
-      <div class="talk-title">QOL &amp; QOB Application for Air-front Smart City Policy Evaluation</div>
-      <div class="talk-venue">e-ASIA Research Symposium 2025: Smart Tourism and Quality of Life for All</div>
-      <span class="talk-invited">Invited</span>
+    <div class="pres-card">
+      <div class="pres-date">Nov 22, 2025</div>
+      <div class="pres-title">Fundamental Analysis for Evaluating Urban Startup Attraction Potential</div>
+      <div class="pres-venue">72nd Annual Conference of Infrastructure Planning · Okayama, Japan</div>
     </div>
 
-    <div class="talk-card reveal">
-      <div class="talk-date">Nov 2024</div>
-      <div class="talk-title">Quality of Life (QOL) and Quality of Business (QOB) Based Air-front Smart City Evaluation Method</div>
-      <div class="talk-venue">第70回土木計画学研究発表会 (JSCE Infrastructure Planning, Vol. 70)</div>
+    <div class="pres-card">
+      <div class="pres-date">Nov 22, 2025</div>
+      <div class="pres-title">Evaluation of Industrial Innovation, Decarbonization, and GNH for Air-Front Smart Cities Using Regional Evaluation Model</div>
+      <div class="pres-venue">72nd Annual Conference of Infrastructure Planning · Okayama, Japan</div>
     </div>
 
-    <div class="talk-card reveal">
-      <div class="talk-date">Mar 2024</div>
-      <div class="talk-title">Quality of Life (QOL) &amp; Quality of Business (QOB) Evaluation in Physical and Cyber Spaces</div>
-      <div class="talk-venue">e-ASIA Research Symposium 2024</div>
-      <span class="talk-invited">Invited</span>
+    <div class="pres-card">
+      <div class="pres-date">Nov 22, 2025</div>
+      <div class="pres-title">QOL-QOB Based Air-Front Smart City Evaluation for Startup Development: A Case Study in Aichi, Japan</div>
+      <div class="pres-venue">72nd Annual Conference of Infrastructure Planning · Okayama, Japan</div>
     </div>
 
-    <div class="talk-card reveal">
-      <div class="talk-date">Jul 2023</div>
-      <div class="talk-title">Parameter Setting Examination of Social Dynamic Simulation Using a Multi-layer Network</div>
-      <div class="talk-venue">16th World Conference on Transport Research (WCTR), Montreal</div>
+    <div class="pres-card">
+      <div class="pres-date">Sep 3, 2025</div>
+      <div class="pres-title">The Impact of Digital Service Substitution and Social Networks on Residential Location Choice</div>
+      <div class="pres-venue">16th EASTS International Conference · Surakarta, Indonesia</div>
     </div>
 
-    <div class="talk-card reveal">
-      <div class="talk-date">Sep 2023</div>
-      <div class="talk-title">Large-scale Disaster Evacuation Choice Behavior Modelling Under Compound Risk Amid COVID-19 in Japan</div>
-      <div class="talk-venue">15th EASTS International Conference, Malaysia</div>
+    <div class="pres-card">
+      <div class="pres-date">Sep 1, 2025</div>
+      <div class="pres-title">QOL and QOB Accessibility-Based Evaluation Method for Air-front Smart Cities: Startup and Post-Harvest Agriculture Cases</div>
+      <div class="pres-venue">16th EASTS International Conference · Surakarta, Indonesia</div>
     </div>
 
-    <div class="talk-card reveal">
-      <div class="talk-date">Sep 2021</div>
-      <div class="talk-title">Evaluation of Kabul BRT Proposed by KUDF</div>
-      <div class="talk-venue">14th EASTS International Conference</div>
+    <div class="pres-card">
+      <div class="pres-date">Jan 7, 2025</div>
+      <div class="pres-title">QOL &amp; QOB Application for Air-front Smart City Policy Evaluation</div>
+      <div class="pres-venue">e-ASIA Research Symposium 2025: Smart Tourism and Quality of Life for All · Phuket, Thailand</div>
+      <span class="pres-inv">Invited</span>
+    </div>
+
+    <div class="pres-card">
+      <div class="pres-date">Nov 17, 2024</div>
+      <div class="pres-title">Substitutability of Physical and Information Space Service Access Considering Social Networks and its Effect on Residential Location Choice</div>
+      <div class="pres-venue">70th Annual Conference of Infrastructure Planning · Okayama, Japan</div>
+    </div>
+
+    <div class="pres-card">
+      <div class="pres-date">Nov 16, 2024</div>
+      <div class="pres-title">Construction of Regional Evaluation Model for Air-Front Smart City Assessment</div>
+      <div class="pres-venue">70th Annual Conference of Infrastructure Planning · Okayama, Japan</div>
+    </div>
+
+    <div class="pres-card">
+      <div class="pres-date">Nov 16, 2024</div>
+      <div class="pres-title">Quality of Life (QOL) and Quality of Business (QOB) Based Air-front Smart City Evaluation Method</div>
+      <div class="pres-venue">70th Annual Conference of Infrastructure Planning · Okayama, Japan</div>
+    </div>
+
+    <div class="pres-card">
+      <div class="pres-date">Mar 8, 2024</div>
+      <div class="pres-title">Quality of Life (QOL) &amp; Quality of Business (QOB) Evaluation in Physical and Cyber Spaces</div>
+      <div class="pres-venue">e-ASIA Research Symposium 2024 · Baguio, Philippines</div>
+      <span class="pres-inv">Invited</span>
+    </div>
+
+    <div class="pres-card">
+      <div class="pres-date">Sep 2023</div>
+      <div class="pres-title">Large-scale Disaster Evacuation Choice Behavior Modelling Under Compound Risk of Natural Disasters Amid COVID-19 Pandemic in Japan</div>
+      <div class="pres-venue">15th EASTS International Conference · Kuala Lumpur, Malaysia</div>
+    </div>
+
+    <div class="pres-card">
+      <div class="pres-date">Jul 19, 2023</div>
+      <div class="pres-title">Parameter Setting Examination of Social Dynamic Simulation Using a Multi-layer Network</div>
+      <div class="pres-venue">16th World Conference on Transport Research (WCTR) · Montreal, Canada</div>
+    </div>
+
+    <div class="pres-card">
+      <div class="pres-date">Sep 14, 2021</div>
+      <div class="pres-title">Evaluation of Kabul BRT Proposed by KUDF</div>
+      <div class="pres-venue">14th EASTS International Conference · Hiroshima, Japan</div>
     </div>
 
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <p class="section-label reveal">Get in Touch</p>
-  <h2 class="section-heading reveal">Contact &amp; External Profiles</h2>
-  <div class="contact-grid">
-    <div class="contact-info reveal">
-      <div class="contact-item">
-        <div class="contact-icon">🏛️</div>
-        <div class="contact-detail">
-          <span class="contact-label">Affiliation</span>
-          <span class="contact-value">Graduate School of Engineering<br/>Architecture &amp; Civil Engineering<br/>Toyohashi University of Technology</span>
-        </div>
+<!-- ══════════════ SERVICE ══════════════ -->
+<section id="service" class="section">
+  <div class="kicker reveal">05 — Academic Service &amp; Media</div>
+  <h2 class="sec-title reveal">Peer Review &amp; <em>Media Coverage</em></h2>
+  <div class="service-grid">
+
+    <div class="service-block reveal">
+      <div class="service-head">Journal Peer Reviewer</div>
+      <div class="journal-list">
+        <div class="journal-item"><div class="j-dot"></div><div><a href="https://www.mdpi.com/journal/urbansci" target="_blank">Urban Science</a> — MDPI</div></div>
+        <div class="journal-item"><div class="j-dot"></div><div><a href="https://www.mdpi.com/journal/sustainability" target="_blank">Sustainability</a> — MDPI</div></div>
+        <div class="journal-item"><div class="j-dot"></div><div><a href="https://www.mdpi.com/journal/buildings" target="_blank">Buildings</a> — MDPI</div></div>
+        <div class="journal-item"><div class="j-dot"></div><div><a href="https://www.nature.com/srep/" target="_blank">Scientific Reports</a> — Springer Nature</div></div>
+        <div class="journal-item"><div class="j-dot"></div><div><a href="https://link.springer.com/journal/13819" target="_blank">Discover Artificial Intelligence</a> — Springer Nature</div></div>
+        <div class="journal-item"><div class="j-dot"></div><div><a href="https://www.nature.com/palcomms/" target="_blank">Humanities and Social Sciences Communications</a> — Springer Nature</div></div>
+        <div class="journal-item"><div class="j-dot"></div><div><a href="https://link.springer.com/journal/12061" target="_blank">Applied Spatial Analysis and Policy</a> — Springer Nature</div></div>
+        <div class="journal-item"><div class="j-dot"></div><div><a href="https://bmcpublichealth.biomedcentral.com/" target="_blank">BMC Public Health</a> — Springer Nature</div></div>
+        <div class="journal-item"><div class="j-dot"></div><div><a href="https://link.springer.com/journal/10098" target="_blank">Clean Technologies and Environmental Policy</a> — Springer Nature</div></div>
       </div>
-      <div class="contact-item">
-        <div class="contact-icon">📍</div>
-        <div class="contact-detail">
-          <span class="contact-label">Location</span>
-          <span class="contact-value">Toyohashi, Aichi, Japan</span>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">🌐</div>
-        <div class="contact-detail">
-          <span class="contact-label">Website</span>
-          <span class="contact-value"><a href="https://mutahari.com" target="_blank">mutahari.com</a></span>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">🔬</div>
-        <div class="contact-detail">
-          <span class="contact-label">ORCID</span>
-          <span class="contact-value"><a href="https://orcid.org/0000-0003-3295-1567" target="_blank">0000-0003-3295-1567</a></span>
+      <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--line);">
+        <div style="font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.75rem;">Academic Activities</div>
+        <div class="journal-item">
+          <div class="j-dot"></div>
+          <div>Panel Moderator / Session Chair — <a href="https://researchmap.jp/mustafa-mutahari/academic_contribution/53435671" target="_blank">HCN Webinar 5, Episode 2: Urban Mobility Connecting Lifestyles and Sustainable Movement</a> · Health City Network, May 2025</div>
         </div>
       </div>
     </div>
-    <div class="contact-links reveal">
-      <a href="https://researchmap.jp/mustafa-mutahari" target="_blank" class="ext-link">
-        Researchmap Profile <span>↗</span>
-      </a>
-      <a href="https://orcid.org/0000-0003-3295-1567" target="_blank" class="ext-link">
-        ORCID Profile <span>↗</span>
-      </a>
-      <a href="https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202601013641983289" target="_blank" class="ext-link">
-        J-GLOBAL Profile <span>↗</span>
-      </a>
-      <a href="https://mutahari.com" target="_blank" class="ext-link">
-        mutahari.com <span>↗</span>
-      </a>
+
+    <div class="service-block reveal">
+      <div class="service-head">Media Coverage</div>
+      <div class="media-grid2">
+
+        <div class="media-card2">
+          <div class="media-type2">Internet · May 22, 2026</div>
+          <div class="media-title2"><a href="https://blog.mdpi.com/2026/05/22/how-can-cities-become-more-attractive-destinations-for-start-ups/" target="_blank">How Can Cities Become More Attractive Destinations for Start-ups?</a></div>
+          <div class="media-date2">MDPI Blog</div>
+        </div>
+
+        <div class="media-card2">
+          <div class="media-type2">Newspaper · May 2026</div>
+          <div class="media-title2"><a href="https://higashiaichi.jp/news/detail.php?id=27138" target="_blank">企業の街選び、決め手は「税金」と「生活の質」 豊橋技科大、スタートアップ誘致の新指標を発表</a></div>
+          <div class="media-date2">Higashi Aichi Shimbun (東愛知新聞)</div>
+        </div>
+
+        <div class="media-card2">
+          <div class="media-type2">Newspaper · May 2026</div>
+          <div class="media-title2"><a href="https://www.tonichi.net/news/index.php?id=122659" target="_blank">誘致のカギは減税とQOL向上 ― 豊橋技科大研究チームがスタートアップ誘致分析／愛知「生活の質」は海外主要都市超え</a></div>
+          <div class="media-date2">東日新聞 (Tonichi Shimbun)</div>
+        </div>
+
+        <div class="media-card2">
+          <div class="media-type2">Internet · May 2026</div>
+          <div class="media-title2"><a href="https://phys.org/news/2026-05-tax-access-quality-life-startup.html" target="_blank">Tax cuts, access and quality of life shape startup-friendly smart cities</a></div>
+          <div class="media-date2">phys.org</div>
+        </div>
+
+        <div class="media-card2">
+          <div class="media-type2">Internet · May 2026</div>
+          <div class="media-title2"><a href="https://www.eurekalert.org/news-releases/1127192" target="_blank">Toward startup-friendly smart cities</a></div>
+          <div class="media-date2">EurekAlert! (English)</div>
+        </div>
+
+        <div class="media-card2">
+          <div class="media-type2">Internet · May 2026</div>
+          <div class="media-title2"><a href="https://www.eurekalert.org/news-releases/1127192?language=japanese" target="_blank">スタートアップに適したスマートシティの実現：テクノロジーだけではなく、政策・アクセシビリティ・QOL が主要な決定要因であることが明らかに</a></div>
+          <div class="media-date2">EurekAlert! (Japanese)</div>
+        </div>
+
+        <div class="media-card2">
+          <div class="media-type2">Internet · May 2026</div>
+          <div class="media-title2"><a href="https://scienmag.com/advancing-smart-cities-to-empower-startups/" target="_blank">Advancing Smart Cities to Empower Startups</a></div>
+          <div class="media-date2">Scienmag</div>
+        </div>
+
+        <div class="media-card2">
+          <div class="media-type2">Internet · May 2026</div>
+          <div class="media-title2"><a href="https://www.minuszos.hu/kiderult-mitol-startup-barat-egy-varos/" target="_blank">Kiderült mitől startup barát egy város</a></div>
+          <div class="media-date2">Minuszos.hu (Hungarian)</div>
+        </div>
+
+        <div class="media-card2">
+          <div class="media-type2">Newspaper / Magazine · Nov 14, 2025</div>
+          <div class="media-title2"><a href="https://scienmag.com/digital-access-enhances-convenience-but-cannot-completely-substitute-physical-services-study-finds/" target="_blank">Digital Access Enhances Convenience but Cannot Completely Substitute Physical Services, Study Finds</a></div>
+          <div class="media-date2">Scienmag</div>
+        </div>
+
+        <div class="media-card2">
+          <div class="media-type2">Internet · Nov 13, 2025</div>
+          <div class="media-title2"><a href="https://medicalxpress.com/news/2025-11-digital-access-convenience-fully-physical.html" target="_blank">Digital access improves convenience, but cannot fully replace physical services</a></div>
+          <div class="media-date2">Science X / medicalxpress.com</div>
+        </div>
+
+        <div class="media-card2">
+          <div class="media-type2">Internet · Nov 2025</div>
+          <div class="media-title2"><a href="https://portalenf.com/2025/11/o-acesso-digital-melhora-a-conveniencia-mas-nao-pode-substituir-totalmente-os-servicos-fisicos/#google_vignette" target="_blank">O acesso digital melhora a conveniência, mas não pode substituir totalmente os serviços físicos</a></div>
+          <div class="media-date2">Portal ENF (Portuguese)</div>
+        </div>
+
+        <div class="media-card2">
+          <div class="media-type2">Internet · Jul 9, 2025</div>
+          <div class="media-title2"><a href="https://www.atpress.ne.jp/news/1428748" target="_blank">デジタルサービスの代替利用による、都市における公平性と持続可能性への影響に関する研究実施：年齢・車の保有・オンライン活動が都市の持続可能性に影響</a></div>
+          <div class="media-date2">@Press</div>
+        </div>
+
+        <div class="media-card2">
+          <div class="media-type2">Newspaper · Jun 19, 2025</div>
+          <div class="media-title2"><a href="https://www.tonichi.net/news/index.php?id=116328" target="_blank">車持つほどネットで購入？</a></div>
+          <div class="media-date2">東日新聞 (Tonichi Shimbun)</div>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ══════════════ CONTACT ══════════════ -->
+<section id="contact" class="section">
+  <div class="kicker teal reveal">06 — Get in Touch</div>
+  <h2 class="sec-title teal reveal">Contact <em>Dr. Mutahari</em></h2>
+  <div class="contact-layout">
+    <div class="reveal">
+      <div class="contact-info-items">
+        <div class="ci-item"><div class="ci-ico">🏛️</div><div><div class="ci-label">Affiliation</div><div class="ci-val">Graduate School of Engineering<br/>Architecture &amp; Civil Engineering<br/>Toyohashi University of Technology</div></div></div>
+        <div class="ci-item"><div class="ci-ico">📍</div><div><div class="ci-label">Location</div><div class="ci-val">Toyohashi, Aichi, Japan</div></div></div>
+        <div class="ci-item"><div class="ci-ico">🔬</div><div><div class="ci-label">ORCID</div><div class="ci-val"><a href="https://orcid.org/0000-0003-3295-1567" target="_blank">0000-0003-3295-1567</a></div></div></div>
+        <div class="ci-item"><div class="ci-ico">🌐</div><div><div class="ci-label">Lab Website</div><div class="ci-val"><a href="https://sites.google.com/tr.ace.tut.ac.jp/home/en" target="_blank">Urban &amp; Transportation Systems Lab, TUT</a></div></div></div>
+      </div>
+      <div class="ext-links-col">
+        <a href="https://researchmap.jp/mustafa-mutahari?lang=en" target="_blank" class="ext-link-btn">Researchmap Profile <span>↗</span></a>
+        <a href="https://orcid.org/0000-0003-3295-1567" target="_blank" class="ext-link-btn">ORCID Profile <span>↗</span></a>
+        <a href="https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=202601013641983289" target="_blank" class="ext-link-btn">J-GLOBAL Profile <span>↗</span></a>
+        <a href="https://doi.org/10.3390/smartcities9040057" target="_blank" class="ext-link-btn">Latest Paper — Smart Cities 2026 <span>↗</span></a>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="contact-form">
+        <div class="form-title">Send a Message</div>
+        <div class="form-row">
+          <label>Your Name *</label>
+          <input type="text" id="f-name" placeholder="Full name" required/>
+        </div>
+        <div class="form-row">
+          <label>Email Address *</label>
+          <input type="email" id="f-email" placeholder="your@email.com" required/>
+        </div>
+        <div class="form-row">
+          <label>Affiliation / Institution</label>
+          <input type="text" id="f-affil" placeholder="University / Organization"/>
+        </div>
+        <div class="form-row">
+          <label>Purpose of Contact *</label>
+          <select id="f-purpose">
+            <option value="">— Select a purpose —</option>
+            <option value="Research Collaboration">Research Collaboration</option>
+            <option value="Mentorship">Mentorship</option>
+            <option value="Research Funding">Research Funding / Grant Collaboration</option>
+            <option value="Academic Discussion">Academic Discussion</option>
+            <option value="Conference Invitation">Conference / Symposium Invitation</option>
+            <option value="Media Inquiry">Media Inquiry</option>
+            <option value="Student Inquiry">Student / Prospective Researcher Inquiry</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Message *</label>
+          <textarea id="f-msg" placeholder="Please describe your inquiry..."></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()">Send Message →</button>
+        <div class="form-msg" id="f-result"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
-  <p>© 2026 Mustafa Mutahari · Research Fellow, Toyohashi University of Technology</p>
-  <p style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;">Data sourced from researchmap.jp</p>
+  <p>© 2026 Dr. Mustafa Mutahari · Researcher, Toyohashi University of Technology · Aichi, Japan · <a href="https://orcid.org/0000-0003-3295-1567" target="_blank" style="color:var(--gold);">ORCID: 0000-0003-3295-1567</a></p>
+  <div class="footer-links">
+    <a href="https://researchmap.jp/mustafa-mutahari?lang=en" target="_blank">Researchmap</a>
+    <a href="https://orcid.org/0000-0003-3295-1567" target="_blank">ORCID</a>
+    <a href="https://doi.org/10.3390/smartcities9040057" target="_blank">Latest Paper</a>
+  </div>
 </footer>
 
+<!-- ══════════════ MODALS ══════════════ -->
+
+<!-- Research Interest Modals (chip clicks from hero/about) -->
+<div class="modal-overlay" id="modal-luti">
+  <button class="modal-close" onclick="closeModal('modal-luti')">✕ Close</button>
+  <div class="modal-inner">
+    <div class="modal-kicker">Research Interest</div>
+    <h2 class="modal-title">Land Use–Transport Models</h2>
+    <div class="modal-body">
+      <p>Dr. Mutahari's work on land use–transport interaction (LUTI) modelling focuses on extending classical frameworks to incorporate digital accessibility. Traditional LUTI models represent bidirectional feedback between where people live and work (land use) and how they move (transport), with accessibility as the key coupling variable. His research proposes augmenting this with a digital accessibility layer capturing ICT infrastructure quality, digital service adoption rates, and social network density.</p>
+      <p>This modified model, calibrated on Japanese city data, produces meaningfully different predictions for residential location choice — especially under scenarios of demographic aging and digital infrastructure investment. The work directly addresses how planners should account for virtual networks alongside physical ones in regional planning.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Publications</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.3390/su17219660" target="_blank">A Computational Framework for Evaluating Quality of Life in Sustainable Urban Environments: Integrating Physical and Digital Service Accessibility</a></div><div class="modal-pub-meta">Sustainability, 17(21), 2025 · doi:10.3390/su17219660</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.1016/j.trpro.2024.12.002" target="_blank">Parameter Setting Examination of Social Dynamic Simulation Using a Multi-layer Network</a></div><div class="modal-pub-meta">Transportation Research Procedia, 82, 2023 · doi:10.1016/j.trpro.2024.12.002</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.3390/su132413744" target="_blank">Social Dynamics Simulation Using a Multi-Layer Network</a></div><div class="modal-pub-meta">Sustainability, 13(24), 2021 · doi:10.3390/su132413744</div></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-micro">
+  <button class="modal-close" onclick="closeModal('modal-micro')">✕ Close</button>
+  <div class="modal-inner">
+    <div class="modal-kicker">Research Interest</div>
+    <h2 class="modal-title">Urban Microsimulation</h2>
+    <div class="modal-body">
+      <p>Dr. Mutahari developed a multi-layer network urban microsimulation model that simulates the co-evolution of physical accessibility, digital accessibility, social network dynamics, land prices, and household relocation behaviour under alternative policy scenarios. The model incorporates synthetic agents — households and firms — with demographic and economic attributes drawn from Japanese census data.</p>
+      <p>This tool enables planners to test the long-term consequences of transport infrastructure consolidation, demand-responsive service introduction, and digital service substitution policies before committing to irreversible investments. The social dynamic simulation model is directly relevant to challenges facing municipalities across the Tokai region and beyond.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Publications</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.1016/j.trpro.2024.12.002" target="_blank">Parameter Setting Examination of Social Dynamic Simulation Using a Multi-layer Network</a></div><div class="modal-pub-meta">Transportation Research Procedia, 82, 2023</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title">Future Quality of Life (QOL) Projections and Urban Policy Evaluation Using Urban Microsimulation in Toyohashi City</div><div class="modal-pub-meta">AURG2025 Proceedings, 2025</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title">Evaluation of Location Optimization Plan Using Urban Microsimulation Model</div><div class="modal-pub-meta">AURG2023 Proceedings, 2023</div></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-qolqob">
+  <button class="modal-close" onclick="closeModal('modal-qolqob')">✕ Close</button>
+  <div class="modal-inner">
+    <div class="modal-kicker">Research Interest</div>
+    <h2 class="modal-title">QOL / QOB Evaluation</h2>
+    <div class="modal-body">
+      <p>At the core of Dr. Mutahari's research is the development of accessibility-based frameworks to evaluate how urban and transport systems affect the Quality of Life (QOL) of individuals and the Quality of Business (QOB) of enterprises. He developed a computational framework integrating physical transport network accessibility with digital ICT accessibility to produce a holistic QOL index for urban residents.</p>
+      <p>The QOL/QOB dual framework builds two parallel accessibility indices evaluated at zone-level granularity and compared across cities. Applied to Aichi (Japan), Singapore, Munich, and Baguio (Philippines), the framework revealed that cities optimized for QOB do not necessarily score well on QOL — exposing critical policy trade-offs that composite indices would obscure.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Publications</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.3390/smartcities9040057" target="_blank">Startup-Driven Air-Front Smart City Policy Evaluation Using Integrated Accessibility Index</a></div><div class="modal-pub-meta">Smart Cities, 9(4), 2026</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.3390/su17219660" target="_blank">A Computational Framework for Evaluating Quality of Life in Sustainable Urban Environments</a></div><div class="modal-pub-meta">Sustainability, 17(21), 2025</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://www.jstage.jst.go.jp/article/easts/16/0/16_PP3934/_article" target="_blank">A Holistic Evaluation Framework for Air-Front Smart Cities: Integrating QOL and QOB via Accessibility Modeling</a></div><div class="modal-pub-meta">JEASTSS, 16(PP3934), 2025</div></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-smart">
+  <button class="modal-close" onclick="closeModal('modal-smart')">✕ Close</button>
+  <div class="modal-inner">
+    <div class="modal-kicker">Research Interest</div>
+    <h2 class="modal-title">Smart Cities &amp; Air-Front Development</h2>
+    <div class="modal-body">
+      <p>The "Air-Front Smart City" (ASC) concept describes a new form of regional development anchored by air connectivity, logistics infrastructure, and innovation ecosystems. Dr. Mutahari's research, conducted as part of the JST e-ASIA Joint Research Program, integrates QOL, QOB, and decarbonization into a unified policy evaluation framework for ASCs.</p>
+      <p>A key contribution is the development of a startup attraction potential index — a metric evaluating a city's capacity to attract knowledge-intensive enterprises based on integrated accessibility, QOL conditions, and business environment indicators. Applied to Aichi (Japan), Singapore, Munich, and Baguio (Philippines), this framework supports evidence-based regional development policy.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Publications</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.3390/smartcities9040057" target="_blank">Startup-Driven Air-Front Smart City Policy Evaluation Using Integrated Accessibility Index: A Case Study of Aichi, Singapore, and Munich</a></div><div class="modal-pub-meta">Smart Cities, 9(4), 2026</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://www.jstage.jst.go.jp/article/easts/16/0/16_PP3934/_article" target="_blank">A Holistic Evaluation Framework for Air-Front Smart Cities: Integrating QOL and QOB via Accessibility Modeling</a></div><div class="modal-pub-meta">JEASTSS, 16, 2025</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title">Developing Quality of Business (QOB) Evaluation Model for Air-front Smart Cities</div><div class="modal-pub-meta">AURG2025, 2025</div></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-evac">
+  <button class="modal-close" onclick="closeModal('modal-evac')">✕ Close</button>
+  <div class="modal-inner">
+    <div class="modal-kicker">Research Interest</div>
+    <h2 class="modal-title">Evacuation Simulation &amp; Disaster Resilience</h2>
+    <div class="modal-body">
+      <p>Dr. Mutahari's research addresses transport system resilience under compound disaster risk. His study on large-scale evacuation behaviour examined how accessibility constraints and risk perception jointly shape evacuation decisions in Japanese cities under the combined risk of natural disasters and the COVID-19 pandemic.</p>
+      <p>A further study developed a supply-demand framework to evaluate drinking water shortages and spatial accessibility to emergency water reserves during large-scale earthquake scenarios in Gifu City, Japan — revealing water shortage rates reaching up to 33% in densely populated and mountainous areas.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Publications</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.11175/easts.15.102" target="_blank">Large-scale Disaster Evacuation Choice Behavior Modelling Under Compound Risk of Natural Disasters Amid COVID-19 Pandemic in Japan</a></div><div class="modal-pub-meta">JEASTSS, 15, pp. 102–121, 2024 · doi:10.11175/easts.15.102</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://easts.info/on-line/proceedings/vol.15/pdf/F_PP4001.pdf" target="_blank">Assessing Water Shortages and Spatial Accessibility in Large-Scale Earthquakes: A Supply-Demand Analysis for Emergency Preparedness</a></div><div class="modal-pub-meta">Proceedings EASTS, Vol. 17, 2025</div></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-digital">
+  <button class="modal-close" onclick="closeModal('modal-digital')">✕ Close</button>
+  <div class="modal-inner">
+    <div class="modal-kicker">Research Interest</div>
+    <h2 class="modal-title">Digital Accessibility &amp; Substitution</h2>
+    <div class="modal-body">
+      <p>Dr. Mutahari's research on digital service substitution demonstrates that the relationship between digital activity and physical travel is not simple binary substitution but a complex four-way typology: strong substitution (e-commerce, online banking), complementarity (social media increasing physical activity), restructuring (remote work reshaping residential patterns), and new demand creation (delivery logistics).</p>
+      <p>His study using a web-based survey of 6,210 respondents found that socio-demographic factors significantly influence digital service adoption, and that social network structures mediate substitutability — with critical implications for how transport planners should prioritize infrastructure investment in aging and shrinking communities.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Publications</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.3390/su17115185" target="_blank">Digital Service Substitution and Social Networks: Implications for Sustainable Urban Development</a></div><div class="modal-pub-meta">Sustainability, 17(11), 5185, 2025 · doi:10.3390/su17115185</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.3390/su17219660" target="_blank">A Computational Framework for Evaluating Quality of Life in Sustainable Urban Environments</a></div><div class="modal-pub-meta">Sustainability, 17(21), 2025</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title">Assessing the Substitutability of Physical and Cyber Access to Services Considering Social Networks and its Impact on Residential Location Choice</div><div class="modal-pub-meta">AURG2025, 2025</div></div>
+  </div>
+</div>
+
+<!-- Research Category Modals (from section 02) -->
+<div class="modal-overlay" id="modal-rcat1">
+  <button class="modal-close" onclick="closeModal('modal-rcat1')">✕ Close</button>
+  <div class="modal-inner">
+    <div class="modal-kicker">Research Category 01</div>
+    <h2 class="modal-title">QOL &amp; Well-being Evaluation in Urban Transport Systems</h2>
+    <div class="modal-body">
+      <p>The core of Dr. Mutahari's research agenda is the development of accessibility-based frameworks to evaluate how urban and transport systems affect the QOL of individuals and the QOB of enterprises. In his doctoral and post-doctoral work at Toyohashi University of Technology, he developed a computational framework that integrates physical accessibility (measured through transport networks) with digital accessibility (measured through ICT) to produce a holistic QOL index for urban residents.</p>
+      <p>This framework presents how changes in transport infrastructure, service provision, and digital alternatives jointly affect individuals' ability to access essential services, participate in social networks, and maintain well-being — and discusses how this affects De-CO2 efforts. Dr. Mutahari demonstrated that enhanced digital accessibility can improve QOL by reducing travel burden, saving time, and increasing convenience, while also highlighting that face-to-face interactions and in-person services remain essential for maintaining equity and well-being.</p>
+      <p>A natural extension of this work addressed the substitutability and complementarity of physical and digital services. As cities face depopulation and the consolidation of physical services, understanding when digital alternatives can adequately replace physical travel and when they cannot is critical for equitable policy design. Dr. Mutahari's research demonstrated that social network structures significantly mediate this substitutability, with implications for how transport planners should prioritize infrastructure investment in aging and shrinking communities.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Publications</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.3390/su17219660" target="_blank">A Computational Framework for Evaluating Quality of Life in Sustainable Urban Environments: Integrating Physical and Digital Service Accessibility</a></div><div class="modal-pub-meta">Sustainability, 17(21), October 2025 · doi:10.3390/su17219660</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.3390/su17115185" target="_blank">Digital Service Substitution and Social Networks: Implications for Sustainable Urban Development</a></div><div class="modal-pub-meta">Sustainability, 17(11), 5185, June 2025 · doi:10.3390/su17115185</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title">Assessing the Substitutability of Physical and Cyber Access to Services Considering Social Networks and its Impact on Residential Location Choice</div><div class="modal-pub-meta">AURG2025, January 2025</div></div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Presentations</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://researchmap.jp/mustafa-mutahari/presentations/53360202" target="_blank">QOL/QOB Evaluation</a> — e-ASIA Symposium 2026, Nagoya (Invited)</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://researchmap.jp/mustafa-mutahari/presentations/53360319" target="_blank">QOL &amp; QOB Evaluation in Physical and Cyber Spaces</a> — e-ASIA Symposium 2024, Baguio (Invited)</div></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-rcat2">
+  <button class="modal-close" onclick="closeModal('modal-rcat2')">✕ Close</button>
+  <div class="modal-inner">
+    <div class="modal-kicker">Research Category 02</div>
+    <h2 class="modal-title">Air-Front Smart City Evaluation: QOL, QOB &amp; De-CO2</h2>
+    <div class="modal-body">
+      <p>As a research member of the JST e-ASIA Joint Research Program (2023–2026), an international collaborative project involving Japan, Thailand, and the Philippines, Dr. Mutahari developed an evaluation system where economic growth, gross regional happiness, and De-CO2 are the main pillars of the air-front smart city evaluation system.</p>
+      <p>Within this system, Dr. Mutahari developed an integrated evaluation model that simultaneously assesses QOL for residents and QOB for enterprises, and considers the effect of policy implementations on De-CO2 efforts — including the substitutability of physical services with digital services, promoting startups producing green and eco technologies, and improving logistic networks. This work was published in Smart Cities (2026) and the Journal of the Eastern Asia Society for Transportation Studies (2025), applied to case studies in Aichi, Singapore, Munich, and Baguio (Philippines).</p>
+      <p>A key contribution was the development of a startup attraction potential index — a metric that evaluates a city's capacity to attract knowledge-intensive enterprises based on integrated accessibility, QOL conditions, and business environment indicators. This index provides a novel policy tool for regional governments seeking to leverage social infrastructure investment as a driver of economic regeneration, particularly in contexts of demographic decline, while maintaining higher QOL and reducing CO2 emissions.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Publications</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.3390/smartcities9040057" target="_blank">Startup-Driven Air-Front Smart City Policy Evaluation Using Integrated Accessibility Index: A Case Study of Aichi, Singapore, and Munich</a></div><div class="modal-pub-meta">Smart Cities, 9(4), 57, March 2026 · doi:10.3390/smartcities9040057</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://www.jstage.jst.go.jp/article/easts/16/0/16_PP3934/_article" target="_blank">A Holistic Evaluation Framework for Air-Front Smart Cities: Integrating QOL and QOB via Accessibility Modeling</a></div><div class="modal-pub-meta">Journal of EASTS, 16(PP3934), January 2025</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title">Developing Quality of Business (QOB) Evaluation Model for Air-front Smart Cities</div><div class="modal-pub-meta">AURG2025, pp. 605–612, January 2025</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title">Revitalizing Regional Industries and Advancing a Regenerative Economy</div><div class="modal-pub-meta">Sustainability, 18(6), March 2026</div></div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Presentations</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://researchmap.jp/mustafa-mutahari/presentations/53360256" target="_blank">QOL &amp; QOB Application for Air-front Smart City Policy Evaluation</a> — e-ASIA Symposium 2025, Phuket (Invited)</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://researchmap.jp/mustafa-mutahari/presentations/53360764" target="_blank">QOL and QOB Accessibility-Based Evaluation Method for Air-front Smart Cities</a> — 16th EASTS, Surakarta 2025</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://researchmap.jp/mustafa-mutahari/presentations/53390602" target="_blank">QOL-QOB Based Air-Front Smart City Evaluation for Startup Development</a> — 72nd IP Conference, Okayama 2025</div></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-rcat3">
+  <button class="modal-close" onclick="closeModal('modal-rcat3')">✕ Close</button>
+  <div class="modal-inner">
+    <div class="modal-kicker">Research Category 03</div>
+    <h2 class="modal-title">Urban Microsimulation for Policy Evaluation in Aging Societies</h2>
+    <div class="modal-body">
+      <p>To translate evaluation frameworks into actionable policy tools, Dr. Mutahari developed an urban microsimulation model that projects future QOL trajectories under different policy scenarios, accounting for population aging, household relocation behavior, infrastructure development, land price variations, and digital service diffusion.</p>
+      <p>This model uses a multi-layer networking technique and includes a social dynamic simulation to forecast the future situation of a city while considering temporal changes of physical accessibility, digital accessibility, social relationships, important life events (birth, death, marriage, etc.), land price, and changing residential locations. The social dynamic simulation model enables planners to test the long-term consequences of transport and service consolidation policies before implementation — a capability directly relevant to the challenges facing municipalities across the Tokai region, Japan, and beyond.</p>
+      <p>The model provides a theoretically grounded foundation for simulating how individuals' mobility behaviours, service usage patterns, and social interactions co-evolve over time under exogenous policy interventions.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Publications</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.1016/j.trpro.2024.12.002" target="_blank">Parameter Setting Examination of Social Dynamic Simulation Using a Multi-layer Network</a></div><div class="modal-pub-meta">Transportation Research Procedia, 82, 3960–3979, 2023</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.3390/su132413744" target="_blank">Social Dynamics Simulation Using a Multi-Layer Network</a></div><div class="modal-pub-meta">Sustainability, 13(24), 2021</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title">Future Quality of Life (QOL) Projections and Urban Policy Evaluation Using Urban Microsimulation in Toyohashi City</div><div class="modal-pub-meta">AURG2025, pp. 285–292, 2025</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title">Future Policy Evaluation by Social Dynamics Simulation Using a Multi-layer Network</div><div class="modal-pub-meta">AURG2023, 2023</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title">Evaluation of Location Optimization Plan Using Urban Microsimulation Model</div><div class="modal-pub-meta">AURG2023, 2023</div></div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Presentations</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://researchmap.jp/mustafa-mutahari/presentations/53390773" target="_blank">Parameter Setting Examination of Social Dynamic Simulation Using a Multi-layer Network</a> — WCTR 2023, Montreal</div></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-rcat4">
+  <button class="modal-close" onclick="closeModal('modal-rcat4')">✕ Close</button>
+  <div class="modal-inner">
+    <div class="modal-kicker">Research Category 04</div>
+    <h2 class="modal-title">Disaster Resilience &amp; Accessibility</h2>
+    <div class="modal-body">
+      <p>Beyond QOL evaluation and the microsimulation context, Dr. Mutahari's research addresses transport system resilience under compound disaster risk. A study on large-scale evacuation behaviour under the combined risk of natural disasters and the COVID-19 pandemic examined how accessibility constraints and risk perception jointly shape evacuation decisions in Japanese cities.</p>
+      <p>A further study developed a supply-demand framework to evaluate drinking water shortages and spatial accessibility to emergency water reserves during large-scale earthquake scenarios. Applied to Gifu City, Japan, this study integrated household water stockpiling behaviour with GIS-based spatial analysis of evacuation shelter capacities, revealing systemic vulnerabilities in both household-level preparedness and municipal provisioning — with water shortage rates reaching up to 33% in densely populated and mountainous areas.</p>
+      <p>Together, these studies contribute to the design of more resilient regional transport and urban systems capable of maintaining equitable access to essential resources under crisis conditions.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Publications</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.11175/easts.15.102" target="_blank">Large-scale Disaster Evacuation Choice Behavior Modelling Under Compound Risk of Natural Disasters Amid COVID-19 Pandemic in Japan</a></div><div class="modal-pub-meta">Journal of EASTS, 15, pp. 102–121, 2024 · doi:10.11175/easts.15.102</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://easts.info/on-line/proceedings/vol.15/pdf/F_PP4001.pdf" target="_blank">Assessing Water Shortages and Spatial Accessibility in Large-Scale Earthquakes: A Supply-Demand Analysis for Emergency Preparedness</a></div><div class="modal-pub-meta">Proceedings of EASTS, Vol. 17, pp. 1–20, September 2025</div></div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Presentations</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://researchmap.jp/mustafa-mutahari/presentations/53390730" target="_blank">Large-scale Disaster Evacuation Choice Behavior Modelling</a> — 15th EASTS, Kuala Lumpur 2023</div></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-rcat5">
+  <button class="modal-close" onclick="closeModal('modal-rcat5')">✕ Close</button>
+  <div class="modal-inner">
+    <div class="modal-kicker">Research Category 05</div>
+    <h2 class="modal-title">Real-World Collaboration &amp; Policy Impact</h2>
+    <div class="modal-body">
+      <p>Dr. Mutahari's research is grounded in applied, collaborative work with governments and communities. Before his academic career, he served as Head of the Transportation Planning Department at Kabul Municipality (2018–2020), where he led urban transport strategy for a city of over five million residents, coordinated with the World Bank (KUTEI project) and JICA on transport efficiency improvements, and directed the preparation of the city master plan and annual transport budgets.</p>
+      <p>Critically, the impact of this work extends beyond planning documents. Based on Dr. Mutahari's research on congestion reduction, carbon emission reduction through infrastructure budget optimisation, and QOL improvement for Kabul residents, actual transport infrastructure projects are currently being implemented in Kabul City. These include the construction of underpasses, conversion of roundabouts to intersections, flyover bridges, outer ring roads to divert freight vehicles away from congested urban corridors, land-use readjustments, and the phased implementation of the city master plan prepared during 2018–2020.</p>
+      <p>In Japan, Dr. Mutahari has maintained this applied orientation through active collaboration with the JST e-ASIA international research network and field-based engagement with communities. He has presented this work at leading international venues including WCTR (Montreal 2023), EASTS (Surakarta 2025; Shah Alam 2023; Hiroshima 2021), the European Transport Conference (Antwerp 2024), the IP Fall Conference (Okayama 2024; Fukui 2025), and three consecutive e-ASIA Research Symposia (Baguio 2024; Phuket 2025; Nagoya 2026) where he delivered invited presentations.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Key Applied Output</div>
+    <div class="modal-pub-item"><div class="modal-pub-title">Integrated Evaluation of Real and Virtual Networks</div><div class="modal-pub-meta">European Transport Conference 2024, Antwerp</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://researchmap.jp/mustafa-mutahari/presentations/53360656" target="_blank">Evaluation of Kabul BRT Proposed by KUDF</a></div><div class="modal-pub-meta">14th EASTS, Hiroshima, 2021</div></div>
+  </div>
+</div>
+
 <script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        e.target.style.transitionDelay = (i * 0.05) + 's';
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  reveals.forEach(el => io.observe(el));
+// Reading progress
+const prog=document.getElementById('progress');
+window.addEventListener('scroll',()=>{
+  const st=window.scrollY, dh=document.documentElement.scrollHeight-window.innerHeight;
+  prog.style.width=(st/dh*100)+'%';
+});
+
+// Scroll reveal
+const io=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){setTimeout(()=>e.target.classList.add('vis'),i*55);io.unobserve(e.target);}
+  });
+},{threshold:.06});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Active nav
+const secs=document.querySelectorAll('section[id]');
+const navAs=document.querySelectorAll('.nav-links a[href^="#"]');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id;});
+  navAs.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+});
+
+// Filter publications
+function filterPub(type,btn){
+  document.querySelectorAll('.pf-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.pub-card').forEach(card=>{
+    const t=card.dataset.type||'';
+    if(type==='all')card.style.display='';
+    else if(type==='lead')card.style.display=t.includes('lead')?'':'none';
+    else card.style.display=t.includes(type)?'':'none';
+  });
+}
+
+// Modal open/close
+function openModal(id){
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow='';
+}
+document.querySelectorAll('.modal-overlay').forEach(m=>{
+  m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id);});
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')document.querySelectorAll('.modal-overlay.open').forEach(m=>closeModal(m.id));
+});
+
+// Language toggle
+function toggleLangPanel(){
+  document.getElementById('langPanel').classList.toggle('open');
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('#langPanel')&&!e.target.closest('.lang-btn'))
+    document.getElementById('langPanel').classList.remove('open');
+});
+
+// Translation strings
+const T={
+  en:{nav_about:'About',nav_research:'Research',nav_pubs:'Publications',nav_talks:'Talks',nav_service:'Service',nav_contact:'Contact'},
+  ja:{nav_about:'概要',nav_research:'研究',nav_pubs:'論文',nav_talks:'発表',nav_service:'学術活動',nav_contact:'お問い合わせ'},
+  de:{nav_about:'Über',nav_research:'Forschung',nav_pubs:'Publikationen',nav_talks:'Vorträge',nav_service:'Service',nav_contact:'Kontakt'},
+  fr:{nav_about:'À propos',nav_research:'Recherche',nav_pubs:'Publications',nav_talks:'Conférences',nav_service:'Service',nav_contact:'Contact'},
+  ar:{nav_about:'نبذة',nav_research:'بحث',nav_pubs:'منشورات',nav_talks:'محادثات',nav_service:'خدمة',nav_contact:'تواصل'},
+  fa:{nav_about:'درباره',nav_research:'پژوهش',nav_pubs:'نشریات',nav_talks:'سخنرانی‌ها',nav_service:'خدمات',nav_contact:'تماس'},
+  zh:{nav_about:'关于',nav_research:'研究',nav_pubs:'出版物',nav_talks:'演讲',nav_service:'服务',nav_contact:'联系'},
+  ko:{nav_about:'소개',nav_research:'연구',nav_pubs:'논문',nav_talks:'발표',nav_service:'서비스',nav_contact:'연락처'},
+};
+function setLang(lang,btn){
+  document.querySelectorAll('.lang-option').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const lbl=document.querySelector('.lang-btn');
+  lbl.textContent='🌐 '+lang.toUpperCase();
+  const t=T[lang]||T.en;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.getAttribute('data-i18n');
+    if(t[key])el.textContent=t[key];
+  });
+  document.getElementById('langPanel').classList.remove('open');
+  if(lang==='ar'||lang==='fa')document.documentElement.setAttribute('dir','rtl');
+  else document.documentElement.removeAttribute('dir');
+}
+
+// Contact form via mailto
+function submitForm(){
+  const name=document.getElementById('f-name').value.trim();
+  const email=document.getElementById('f-email').value.trim();
+  const purpose=document.getElementById('f-purpose').value;
+  const msg=document.getElementById('f-msg').value.trim();
+  const result=document.getElementById('f-result');
+  if(!name||!email||!purpose||!msg){
+    result.className='form-msg err';result.style.display='block';
+    result.textContent='Please fill in all required fields.';return;
+  }
+  if(!email.includes('@')){
+    result.className='form-msg err';result.style.display='block';
+    result.textContent='Please enter a valid email address.';return;
+  }
+  const affil=document.getElementById('f-affil').value.trim();
+  const subject=encodeURIComponent('['+purpose+'] Message via mutahari.com — from '+name);
+  const body=encodeURIComponent(
+    'Name: '+name+'\nEmail: '+email+'\nAffiliation: '+(affil||'—')+'\nPurpose: '+purpose+'\n\nMessage:\n'+msg
+  );
+  window.location.href='mailto:mutahari@ace.tut.ac.jp?subject='+subject+'&body='+body;
+  result.className='form-msg ok';result.style.display='block';
+  result.textContent='Your mail client will open now. Thank you for reaching out to Dr. Mutahari.';
+}
+
+// Smooth anchor scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+  });
+});
 </script>
+<!-- ══════════════ CURRENT RESEARCH DETAIL MODALS ══════════════ -->
+
+<!-- Modal 1: Multi-layer simulation / digital substitution in aging societies -->
+<div class="modal-overlay" id="modal-current-research-1">
+  <button class="modal-close" onclick="closeModal('modal-current-research-1')">✕ Close</button>
+  <div class="modal-inner">
+    <div class="modal-kicker">Current Research · Theme 1</div>
+    <h2 class="modal-title">Multi-layer Urban Simulation &amp; Digital Service Substitution in Aging Societies</h2>
+    <div class="modal-body">
+      <p>Dr. Mutahari's current research focuses on developing an integrated multi-layer urban simulation model that incorporates digital service usage, social dynamic simulations, and physical mobility to evaluate urban policies in aging and declining-population societies.</p>
+      <p>The core of this work investigates the <strong>substitutability and complementarity of digital and physical services</strong>, examining the extent to which digital services such as online shopping, teleworking, telemedicine, food delivery, and e-entertainment can replace or reinforce physical activities that require travel. By integrating these dynamics into an urban microsimulation framework, the research aims to provide evidence-based policy tools that help cities harness digital services to enhance residents' quality of life, reduce unnecessary infrastructure development and maintenance burdens, address labour shortages, and expand service supply to meet growing demand in contexts of population aging and demographic decline.</p>
+      <p>The simulation model represents individuals with varying socio-demographic profiles, digital ability levels, and mobility patterns, enabling realistic scenario analysis of how digitalization reshapes daily activities, social networks, and ultimately urban structure itself.</p>
+      <p>Alongside these opportunities, the research critically investigates the <strong>negative consequences of digital service substitution</strong>, including social isolation, deterioration of physical and mental health, the erosion of face-to-face communication and community ties, and a reduction in interpersonal trust — to ensure that policy recommendations account for both the benefits and risks of accelerating digitalization.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Publications</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.3390/su17219660" target="_blank">A Computational Framework for Evaluating Quality of Life in Sustainable Urban Environments: Integrating Physical and Digital Service Accessibility</a></div><div class="modal-pub-meta">Sustainability, 17(21) · 2025 · doi:10.3390/su17219660</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.3390/su17115185" target="_blank">Digital Service Substitution and Social Networks: Implications for Sustainable Urban Development</a></div><div class="modal-pub-meta">Sustainability, 17(11), 5185 · 2025 · doi:10.3390/su17115185</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.1016/j.trpro.2024.12.002" target="_blank">Parameter Setting Examination of Social Dynamic Simulation Using a Multi-layer Network</a></div><div class="modal-pub-meta">Transportation Research Procedia, 82 · 2023 · doi:10.1016/j.trpro.2024.12.002</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.3390/su132413744" target="_blank">Social Dynamics Simulation Using a Multi-Layer Network</a></div><div class="modal-pub-meta">Sustainability, 13(24) · 2021 · doi:10.3390/su132413744</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title">Future Quality of Life (QOL) Projections and Urban Policy Evaluation Using Urban Microsimulation in Toyohashi City</div><div class="modal-pub-meta">AURG2025 Proceedings · 2025</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title">Assessing the Substitutability of Physical and Cyber Access to Services Considering Social Networks and its Impact on Residential Location Choice</div><div class="modal-pub-meta">AURG2025 Proceedings · 2025</div></div>
+  </div>
+</div>
+
+<!-- Modal 2: Digital services as low-cost solutions in developing countries -->
+<div class="modal-overlay" id="modal-current-research-2">
+  <button class="modal-close" onclick="closeModal('modal-current-research-2')">✕ Close</button>
+  <div class="modal-inner">
+    <div class="modal-kicker">Current Research · Theme 2</div>
+    <h2 class="modal-title">Digital Services as Low-Cost Urban Solutions in Developing Countries</h2>
+    <div class="modal-body">
+      <p>Dr. Mutahari also conducts research that examines how <strong>digital accessibility and digital services can serve as practical, low-cost alternative solutions</strong> to longstanding urban challenges in developing countries. Focusing on cities such as Kabul, this line of inquiry investigates how digital services — including online shopping, remote working, food delivery, and online medical consultation — can reduce traffic congestion, lower air pollution, and improve access to services in contexts where physical infrastructure is limited or unequally distributed.</p>
+      <p>The research explores how digital substitution and complementarity of physical services can contribute to <strong>economic growth</strong>, expand business opportunities, and generate new employment streams, while simultaneously improving residents' quality of life and reducing logistics inefficiencies.</p>
+      <p>By comparing physical service accessibility with digital alternatives and proposing <strong>low-cost urban planning strategies</strong> grounded in empirical data, this research aims to offer transferable insights for policymakers and urban planners in rapidly growing cities across the developing world.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Publications</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.3390/su17115185" target="_blank">Digital Service Substitution and Social Networks: Implications for Sustainable Urban Development</a></div><div class="modal-pub-meta">Sustainability, 17(11), 5185 · 2025 · doi:10.3390/su17115185</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.3390/su17219660" target="_blank">A Computational Framework for Evaluating Quality of Life in Sustainable Urban Environments: Integrating Physical and Digital Service Accessibility</a></div><div class="modal-pub-meta">Sustainability, 17(21) · 2025 · doi:10.3390/su17219660</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title">Evaluation of Kabul BRT Proposed by KUDF</div><div class="modal-pub-meta">14th EASTS International Conference · Hiroshima, 2021</div></div>
+  </div>
+</div>
+
+<!-- Modal 3: Barriers to digital service adoption / latent friction -->
+<div class="modal-overlay" id="modal-current-research-3">
+  <button class="modal-close" onclick="closeModal('modal-current-research-3')">✕ Close</button>
+  <div class="modal-inner">
+    <div class="modal-kicker">Current Research · Theme 3</div>
+    <h2 class="modal-title">Barriers to Digital Service Adoption &amp; the Digital Divide</h2>
+    <div class="modal-body">
+      <p>Dr. Mutahari also investigates the factors that shape digital service usage among different population groups, with particular attention to <strong>barriers that prevent equitable adoption</strong>. Drawing on nationwide questionnaire survey data, this research examines how the ability to use ICT devices — encompassing foundational internet skills and competence with tablets and computers — determines whether individuals can benefit from digital services in the first place.</p>
+      <p>The study further explores <strong>concerns related to security and risk</strong>, including anxieties about personal information leaks, computer viruses, spam, internet fraud, and the trustworthiness of electronic payment systems, which constitute significant deterrents to digital engagement. Trust in online services and concerns about viewing harmful or illegal content online are also examined as independent dimensions of user hesitation.</p>
+      <p>Additionally, the research investigates how <strong>social interaction patterns</strong> — such as building new online relationships and the nature of communication with online partners — mediate digital service adoption. Together, these factors are understood as components of <strong>latent friction</strong>, where anxiety about digital services acts as a friction multiplier that compounds existing barriers and suppresses adoption even when access and infrastructure are nominally available.</p>
+      <p>Understanding these dynamics is essential for designing inclusive digital policies that reduce the digital divide and ensure that <strong>elderly and vulnerable populations</strong> are not left behind in the transition to digitalized urban services.</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-sub">Related Publications</div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.3390/su17115185" target="_blank">Digital Service Substitution and Social Networks: Implications for Sustainable Urban Development</a></div><div class="modal-pub-meta">Sustainability, 17(11), 5185 · 2025 · doi:10.3390/su17115185</div></div>
+    <div class="modal-pub-item"><div class="modal-pub-title"><a href="https://doi.org/10.3390/su17219660" target="_blank">A Computational Framework for Evaluating Quality of Life in Sustainable Urban Environments: Integrating Physical and Digital Service Accessibility</a></div><div class="modal-pub-meta">Sustainability, 17(21) · 2025 · doi:10.3390/su17219660</div></div>
+  </div>
+</div>
+
 </body>
 </html>
