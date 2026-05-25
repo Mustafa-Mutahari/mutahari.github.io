@@ -1026,7 +1026,8 @@ body{top:0!important;}
     <div class="reveal">
       <div class="contact-info-items">
         <div class="ci-item"><div class="ci-ico">🏛️</div><div><div class="ci-label">Affiliation</div><div class="ci-val">Graduate School of Engineering<br/>Architecture &amp; Civil Engineering<br/>Toyohashi University of Technology</div></div></div>
-        <div class="ci-item"><div class="ci-ico">📍</div><div><div class="ci-label">Location</div><div class="ci-val">Toyohashi, Aichi, Japan</div></div></div>
+        <div class="ci-item"><div class="ci-ico">✉️</div><div><div class="ci-label">Email</div><div class="ci-val"><a href="mailto:mutahari.mustafa.dj@tut.jp">mutahari.mustafa.dj@tut.jp</a></div></div></div>
+        <div class="ci-item"><div class="ci-ico">📍</div><div><div class="ci-label">Location</div><div class="ci-val"><a href="https://www.google.com/maps/place/Toyohashi+University+of+Technology/@34.7010396,137.4039174,762m/data=!3m1!1e3!4m6!3m5!1s0x6004d486441646c7:0xb819d28be7a7df7f!8m2!3d34.7011877!4d137.4100631!16s%2Fm%2F02vpzqd?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" style="color:var(--teal);">Toyohashi, Aichi, Japan</a></div></div></div>
         <div class="ci-item"><div class="ci-ico">🔬</div><div><div class="ci-label">ORCID</div><div class="ci-val"><a href="https://orcid.org/0000-0003-3295-1567" target="_blank">0000-0003-3295-1567</a></div></div></div>
         <div class="ci-item"><div class="ci-ico">🌐</div><div><div class="ci-label">Lab Website</div><div class="ci-val"><a href="https://sites.google.com/tr.ace.tut.ac.jp/home/en" target="_blank">Urban &amp; Transportation Systems Lab, TUT</a></div></div></div>
       </div>
@@ -1449,7 +1450,7 @@ function setLang(lang,btn){
   }
 }
 
-// Contact form — sends via Formspree (no mail client needed)
+// Contact form — sends via Web3Forms (no mail client needed)
 async function submitForm(){
   const name=document.getElementById('f-name').value.trim();
   const email=document.getElementById('f-email').value.trim();
@@ -1474,32 +1475,35 @@ async function submitForm(){
   result.style.display='none';
 
   try{
-    const res=await fetch('https://formspree.io/f/xwpbwkoa',{
+    const formData=new FormData();
+    formData.append('access_key','00000000-0000-0000-0000-000000000000'); // replaced by Web3Forms key below
+    formData.append('subject','['+purpose+'] Message via mutahari.com — from '+name);
+    formData.append('from_name',name);
+    formData.append('email',email);
+    formData.append('affiliation',affil||'—');
+    formData.append('purpose',purpose);
+    formData.append('message',msg);
+    formData.append('replyto',email);
+    formData.append('to','mutahari.mustafa.dj@tut.jp');
+
+    const res=await fetch('https://api.web3forms.com/submit',{
       method:'POST',
-      headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify({
-        name:name,
-        email:email,
-        affiliation:affil||'—',
-        purpose:purpose,
-        message:msg,
-        _subject:'['+purpose+'] Message via mutahari.com — from '+name,
-        _replyto:email
-      })
+      body:formData
     });
-    if(res.ok){
+    const data=await res.json();
+
+    if(data.success){
       result.className='form-msg ok';result.style.display='block';
       result.textContent='✓ Your message has been sent successfully. Dr. Mutahari will get back to you.';
-      // Clear form
       ['f-name','f-email','f-affil','f-msg'].forEach(id=>document.getElementById(id).value='');
       document.getElementById('f-purpose').value='';
       btn.textContent='Message Sent ✓';
     } else {
-      throw new Error('Server error '+res.status);
+      throw new Error(data.message||'Submission failed');
     }
   }catch(err){
     result.className='form-msg err';result.style.display='block';
-    result.textContent='Something went wrong. Please try again or email directly: mutahari@ace.tut.ac.jp';
+    result.textContent='Something went wrong. Please email directly: mutahari.mustafa.dj@tut.jp';
     btn.disabled=false;
     btn.textContent='Send Message →';
   }
